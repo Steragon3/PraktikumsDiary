@@ -1,0 +1,10 @@
+.ControlButton {
+    background: none;
+    border: none;
+    display: flex;
+    align-items: center;
+
+    &:hover{
+        cursor: pointer;
+    }
+}
