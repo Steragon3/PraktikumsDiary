@@ -9,6 +9,7 @@ import Login from './components/Login'
 import PrivateRoute from './components/PrivateRoute'
 import ForgotPassword from './components/ForgotPassword'
 import UpdateProfile from './components/UpdateProfile';
+import CreateCompany from './components/fireStoreProject/CreateProject';
 
 function App() {
   return (
@@ -22,6 +23,7 @@ function App() {
                 <Route path="/sign-up" component={Signup}/>
                 <Route path="/login" component={Login}/>
                 <Route path="/forgot-password" component={ForgotPassword}/>
+                <Route path="/create" component={CreateCompany}/>
               </Switch>
             </AuthProvider>
           </Router>
