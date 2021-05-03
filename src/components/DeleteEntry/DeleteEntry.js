@@ -4,9 +4,9 @@ import styles from './DeleteEntry.module.scss';
 import remove from '../../images/delete_black_24dp.svg'
 
 const DeleteEntry = () => (
-  <div className={styles.DeleteEntry}>
+  // <div className={styles.DeleteEntry}>
     <img src={remove}></img>
-  </div>
+  // </div>
 );
 
 DeleteEntry.propTypes = {};
