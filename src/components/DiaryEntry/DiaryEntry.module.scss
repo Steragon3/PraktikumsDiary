@@ -1,0 +1,54 @@
+.Entry {
+    background-color: white;
+    border-radius: 5px;
+    padding: 1rem;
+    margin-bottom: 20px;
+}
+
+.EntryContainer{
+    display: flex;
+}
+
+.relative{
+    position: relative;
+    width: 100%;
+    display: grid;
+    grid-template-columns: 9fr auto;
+}
+
+.Label{
+    position: absolute;
+    font-size: 1rem;
+    text-transform: uppercase;
+    background-color: white;
+    padding-left: 25px;
+    padding-right: 25px;
+    left: 20px;
+    color: lightgrey;
+    border-radius: 5px;
+    background-color: lightcyan;
+    top: -10px;
+    display: flex;
+    align-items: center;
+    flex-direction: row;
+    justify-content: center;
+}
+
+.Level1{
+    padding-left: 1rem;
+}
+.Level2{
+    padding-left: 3rem;
+}
+.Level3{
+    padding-left: 5rem;
+}
+.Level4{
+    padding-left: 7rem;
+}
+.Level5{
+    padding-left: 9rem;
+}
+.Level6{
+    padding-left: 11rem;
+}
