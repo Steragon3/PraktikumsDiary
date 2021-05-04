@@ -14,7 +14,6 @@ import WeekBlock from '../WeekBlock/WeekBlock'
 const DiaryEntry = ({entry, index, onchange, swapItems, deleteItem}) => {
   let [editing, setEditing] = useState(false)
 
-  console.log(entry)
 
   let renderSwitch = () => {
     switch(entry.type){

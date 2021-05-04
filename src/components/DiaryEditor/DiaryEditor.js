@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useState, useEffect} from 'react';
 import PropTypes from 'prop-types';
 import styles from './DiaryEditor.module.scss';
 import DiaryEntry from '../DiaryEntry/DiaryEntry'
@@ -6,42 +6,18 @@ import DiaryActions from '../DiaryActions/DiaryActions'
 import DeleteEntry from '../DeleteEntry/DeleteEntry'
 import {Droppable, DragDropContext} from 'react-beautiful-dnd'
 import deletestyles from '../DeleteEntry/DeleteEntry.module.scss'
+import { compose } from 'redux'
+import { connect } from 'react-redux'
+import {updateDiary, fetchDiary} from '../../store/actions/diaryActions'
 
-const DiaryEditor = () => {
-  const initialData = [
-      {
-          "id": 1,
-          "type": "Heading",
-          "level": 1,
-          "value": "Mein nices Praktikum"
-      },
-      {
-        "id": 2,
-          "type": "Heading",
-          "level": 2,
-          "value": "Mein nices Praktikum"
-      },
-      {
-        "id": 3,
-          "type": "Text",
-          "level": 2,
-          "value": "Mein nices Praktikum"
-      },
-      {
-        "id": 4,
-          "type": "Heading",
-          "level": 3,
-          "value": ""
-        },
-        {
-          "id": 5,
-          "type": "Heading",
-          "level": 3,
-          "value": "Mein nices Praktikum Version 3Mein nices Praktikum Version 3Mein nices Praktikum Version 3Mein nices Praktikum Version 3Mein nices Praktikum Version 3Mein nices Praktikum Version 3Mein nices Praktikum Version 3Mein nices Praktikum Version 3Mein nices Praktikum Version 3Mein nices Praktikum Version 3Mein nices Praktikum Version 3Mein nices Praktikum Version 3Mein nices Praktikum Version 3Mein nices Praktikum Version 3Mein nices Praktikum Version 3Mein nices Praktikum Version 3Mein nices Praktikum Version 3Mein nices Praktikum Version 3Mein nices Praktikum Version 3Mein nices Praktikum Version 3"
-      }
-  ]
+const DiaryEditorPresentation = ({diary, onLoadData, onupdateDiary}) => {
+  let [data, setItems] = useState([])
+
+  useEffect(() => {onLoadData().then((d) => {
+    setItems(d.entries)
+  })}, [])
   
-  let [data, setItems] = useState(initialData)
+  // if(data.length == 0) setItems(Array.from(initialData))
 
   let onDragEnd = (result) => {
     if(!result.destination) return;
@@ -115,6 +91,8 @@ const DiaryEditor = () => {
     items.push(item)
     updateLevels(items)
   }
+
+
   return (
   <div className={styles.DiaryEditor}>
     <DragDropContext
@@ -141,7 +119,7 @@ const DiaryEditor = () => {
           </Droppable>
         </DragDropContext>
 
-      <button className={styles.mainbutton}>
+      <button className={styles.mainbutton} onClick={() => {onupdateDiary({entries: data})}}>
         Save
       </button>
       <button className={styles.mainbutton}>
@@ -151,8 +129,27 @@ const DiaryEditor = () => {
   )
 }
 
-DiaryEditor.propTypes = {};
+// DiaryEditor.propTypes = {};
 
-DiaryEditor.defaultProps = {};
+// DiaryEditor.defaultProps = {};
 
-export default DiaryEditor;
+
+const mapStateToProps = (state) => {
+  return {
+    diary: state.diary
+  }
+}
+
+const mapDispatchToProps = (dispatch) => {
+  return {
+    onLoadData: async () => {
+      return await dispatch(fetchDiary())
+    },
+    onupdateDiary: async (diary) => {dispatch(updateDiary(diary))}
+  }
+}
+
+
+export default compose(
+  connect(mapStateToProps, mapDispatchToProps)
+)(DiaryEditorPresentation);
