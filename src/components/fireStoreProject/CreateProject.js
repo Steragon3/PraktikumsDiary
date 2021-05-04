@@ -18,6 +18,8 @@ class CreateProject extends Component {
     this.props.createCompany(this.state);
     this.props.history.push('/');
   }
+
+  
   render() {
     return (
       <div className="container">
