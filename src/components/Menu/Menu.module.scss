@@ -1,5 +1,19 @@
 .Menu {
-    width: 20vw;
     min-width: 300px;
     background-color: darkyellow;
+    display:flex;
+    flex-direction: column;
+    background-color: #F7E83D;
+    padding: 20px;
+
+    .icon{
+        border-radius: 25px;
+        height: 50px;
+        width: 50px;
+        background-color: black;
+    }
+}
+
+.EmptyMenu {
+    width: 0px;
 }

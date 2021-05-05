@@ -2,7 +2,6 @@ import React,{useState, useEffect} from 'react';
 import PropTypes from 'prop-types';
 import draggablestyles from '../DiaryEntry/DiaryEntry.module.scss'
 import weekbBlock from './WeekBlock.module.scss'
-import autoGrow from '../../frontendJS/autoGrow'
 import ResizableTextarea from '../textarea/textarea'
 
 
