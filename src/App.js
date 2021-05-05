@@ -25,7 +25,7 @@ function App() {
           </Menu>
             <AuthProvider>
               <Switch>
-                <PrivateRoute exact path="/" component={Dashboard}/>
+                <Route exact path="/" component={Dashboard}/>
                 <PrivateRoute path="/update-profile" component={UpdateProfile}/>
                 <PrivateRoute path="/diary" component={DiaryScreen}/>
                 <PrivateRoute path="/export" component={WikiExporter}/>

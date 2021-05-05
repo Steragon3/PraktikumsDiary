@@ -8,7 +8,7 @@ export default function Signup() {
     const emailRef = useRef()
     const passwordRef = useRef()
     const passwordConfirmRef = useRef()
-    const { signup } = useAuth()
+    const { signup, sendVerificationLink } = useAuth()
     const [error, setError] = useState('')
     const [loading, setLoading] = useState(false)
     const history = useHistory()
@@ -23,9 +23,11 @@ export default function Signup() {
             setError("")
             setLoading(true)
             await signup(emailRef.current.value, passwordRef.current.value)
+            console.log(await sendVerificationLink())
             history.push("/")
-        }catch{
-            setError('Faild to create an account')
+        }catch(e){
+            // setError('Faild to create an account')
+            setError(e.message)
         }
         setLoading(false)
     }

@@ -1,11 +1,15 @@
-import React, {useState}from 'react'
+import React, {useState, useEffect}from 'react'
 import { Card, Button, Alert } from 'react-bootstrap'
 import {useAuth} from '../../context/AuthContext'
 import { Link, useHistory } from 'react-router-dom'
 export default function Dashboard() {
     const [error, setError] = useState("")
-    const { currentUser, logout } = useAuth()
+    const { currentUser, logout, sendVerificationLink } = useAuth()
     const history = useHistory()
+
+    // useEffect(() => {
+    //     logout()
+    // }, [])
 
     async function handleLogout(){
         setError('')
@@ -17,6 +21,9 @@ export default function Dashboard() {
             setError('Failed to log out')
         }
     }
+
+    
+    console.log(currentUser)
     return (
         <>
             <Card>
@@ -30,6 +37,9 @@ export default function Dashboard() {
                     </Link>
                 </Card.Body>
             </Card>
+
+            {!currentUser.emailVerified && <Alert variant="danger">Not Verified, please check your Emails</Alert>}
+            
             <div className="w-100 text-center mt-2">
                 <Button variant="link" onClick={handleLogout}>Log Out</Button>
             </div>
