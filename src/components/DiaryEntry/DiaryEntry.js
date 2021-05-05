@@ -14,7 +14,6 @@ import WeekBlock from '../WeekBlock/WeekBlock'
 const DiaryEntry = ({entry, index, onchange, swapItems, deleteItem}) => {
   let [editing, setEditing] = useState(false)
 
-
   let renderSwitch = () => {
     switch(entry.type){
       case "Heading":
@@ -29,7 +28,7 @@ const DiaryEntry = ({entry, index, onchange, swapItems, deleteItem}) => {
   }
 
   let renderLabel = () => {
-    return entry.type == 'Text' ? 'Text' : `${entry.type} ${entry.level}`  
+    return entry.type == 'Text' ? 'Text' : `${entry.type}`  
   }
 
   return (<Draggable draggableId={`${entry.id}`} index={index}>
