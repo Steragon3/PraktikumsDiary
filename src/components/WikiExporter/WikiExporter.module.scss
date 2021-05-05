@@ -1,1 +1,17 @@
-.WikiExporter {}
+.WikiExporter {
+    display: flex;
+    flex-direction: column;
+    padding-top: 40px;
+    
+    textarea{
+        height: 80vh;
+        margin-bottom: 20px;
+    }
+
+    button{
+        display: flex;
+        align-items: center;
+        max-width: 200px;
+        padding: 10px;
+    }
+}

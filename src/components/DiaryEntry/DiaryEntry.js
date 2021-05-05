@@ -33,7 +33,7 @@ const DiaryEntry = ({entry, index, onchange, swapItems, deleteItem}) => {
 
   return (<Draggable draggableId={`${entry.id}`} index={index}>
     {(provided, snapshot) => (
-      <div ref={provided.innerRef} {...provided.draggableProps} {...provided.dragHandleProps} className={styles[`Level${entry.level}`]} id={`${entry.id}`}>
+      <div ref={provided.innerRef} {...provided.draggableProps} {...provided.dragHandleProps} className={styles[`Level${entry.level}`] + " " + styles.LevelAll} id={`${entry.id}`}>
         <div className={styles.relative}>
           { renderSwitch() }
 
