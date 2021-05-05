@@ -2,30 +2,8 @@ import {auth} from '../../firebase'
 import initialDiary from './initialDiary'
 
 const updateDiary = (diary) => async(dispatch, getState, {getFirestore}) => {
-    // return (dispatch, getState, {getFirestore}) => {
+   
       const firestore = getFirestore();
-      
-      
-    //   firestore.collection("journals").doc(auth.currentUser.uid).get().then((data) => {
-    //     console.log(data.exists)
-
-    //     if(!data.exists){
-    //       firestore.collection("journals").doc(auth.currentUser.uid).set(diary)
-    //       .then((data) => {
-    //         console.log(data)
-    //         dispatch({
-    //             type: 'diary/update',
-    //             payload: data
-    //         })
-    //     })
-    //     .catch((err) => {
-    //         console.log(err)
-    //         dispatch({
-    //             type: 'diary/error',
-    //             payload: err
-    //         })
-    //     })
-    // }else{
         firestore.collection("journals").doc(auth.currentUser.uid).set(diary)
         .then((data) => {
             dispatch({
@@ -40,14 +18,9 @@ const updateDiary = (diary) => async(dispatch, getState, {getFirestore}) => {
                 payload: err
             })
         })
-            
-    // }
-    //   })
-    // }
   };
 
 const fetchDiary = () => async(dispatch,getState, {getFirestore}) => {
-    // return (dispatch, getState, {getFirestore}) => {
         const firestore = getFirestore();
 
         let action = await firestore.collection("journals").doc(auth.currentUser.uid).get().then((data) => {
@@ -68,10 +41,8 @@ const fetchDiary = () => async(dispatch,getState, {getFirestore}) => {
                 payload: err
             }
         })
-
         dispatch(action)
         return (action.payload)
-    // }
 }
 
 export {updateDiary as updateDiary, fetchDiary as fetchDiary}
