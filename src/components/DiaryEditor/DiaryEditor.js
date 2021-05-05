@@ -9,6 +9,7 @@ import deletestyles from '../DeleteEntry/DeleteEntry.module.scss'
 import { compose } from 'redux'
 import { connect } from 'react-redux'
 import {updateDiary, fetchDiary} from '../../store/actions/diaryActions'
+import {Link} from "react-router-dom"
 
 const DiaryEditorPresentation = ({diary, onLoadData, onupdateDiary}) => {
   let [data, setItems] = useState([])
@@ -122,9 +123,7 @@ const DiaryEditorPresentation = ({diary, onLoadData, onupdateDiary}) => {
       <button className={styles.mainbutton} onClick={() => {onupdateDiary({entries: data})}}>
         Save
       </button>
-      <button className={styles.mainbutton}>
-        Export
-      </button>
+      <Link to="/export" className="btn btn-primary">Export</Link>
   </div>
   )
 }

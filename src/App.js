@@ -12,17 +12,23 @@ import PrivateRoute from './components/PrivateRoute'
 import ForgotPassword from './components/ForgotPassword'
 import UpdateProfile from './components/UpdateProfile';
 import CreateCompany from './components/fireStoreProject/CreateProject';
-
+import WikiExporter from './components/WikiExporter/WikiExporter';
+import Menu from './components/Menu/Menu'
 function App() {
   return (
+      <>
       <Container className="d-flex align-items-center justify-content-center" style={{minHeight: "100vh"}}>
         <div className="w-100">
+          
           <Router>
+          <Menu>
+          </Menu>
             <AuthProvider>
               <Switch>
                 <PrivateRoute exact path="/" component={Dashboard}/>
                 <PrivateRoute path="/update-profile" component={UpdateProfile}/>
                 <PrivateRoute path="/diary" component={DiaryScreen}/>
+                <PrivateRoute path="/export" component={WikiExporter}/>
                 <div className="w-100" style={{maxWidth: "400px"}}>
                   <Route path="/sign-up" component={Signup}/>
                   <Route path="/login" component={Login}/>
@@ -34,6 +40,7 @@ function App() {
           </Router>
         </div>
       </Container>
+      </>
   )
 }
 

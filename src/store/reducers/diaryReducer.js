@@ -3,12 +3,13 @@ const initState = {entries: []}
 const diaryReducer = (state = initState, action) => {
     switch (action.type) {
         case 'diary/update':
-            return action.payload;
+            return state;
         case 'diary/fetch':
             return action.payload;
         case 'diary/error':
             console.log('diary err');
-            return action.payload;
+            console.log(action.payload)
+            return state
         default:
             return state;
     }

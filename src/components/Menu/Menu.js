@@ -1,10 +1,13 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import {Link} from 'react-router-dom'
 import styles from './Menu.module.scss';
 
 const Menu = () => (
   <div className={styles.Menu}>
-    Menu Component
+    <Link to="/update-profile">Update Profile</Link>
+    <Link to="/diary">Diary</Link>
+    <Link to="/Export">Export</Link>
   </div>
 );
 
