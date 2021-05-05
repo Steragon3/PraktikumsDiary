@@ -6,7 +6,7 @@ import {updateDiary, fetchDiary} from '../../store/actions/diaryActions'
 import { ExportToWiki } from '../../parser/parser.js'
 import { compose } from 'redux'
 import { connect } from 'react-redux'
-
+import copyIcon from '../../images/content_copy_black_24dp.svg'
 
 const WikiExporter = ({onLoadData}) => {
   let [data, setItems] = useState([])
@@ -27,7 +27,7 @@ const WikiExporter = ({onLoadData}) => {
   return(
     <div className={styles.WikiExporter}>
         <textarea onChange={(e)=>data = e.target.value} id="wikiText" defaultValue={data} rows="10" cols="100"></textarea>
-        <button onClick={()=>navigator.clipboard.writeText(data)}> Copy to Clipboard </button>
+        <button className="btn btn-primary" onClick={()=>navigator.clipboard.writeText(data)}><i class="material-icons">content_copy</i> Copy to Clipboard </button>
     </div>
     
 )};

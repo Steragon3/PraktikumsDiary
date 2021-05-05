@@ -24,7 +24,8 @@ $light-yellow: #F7E83D;
   
   .content {
     background-color: #FCF8C2; 
-
+    display: flex;
+    justify-content: center;
     .centered{
       width: 100%;
       height: 100%;
