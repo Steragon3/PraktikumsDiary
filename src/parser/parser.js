@@ -1,15 +1,15 @@
-import {Title, Heading, Week, Text} from './classes.js';
+import {Title, Heading, Week, Text} from './Classes.js';
 
 function ImportJournal(json){
     let importJournal = json.map(entry =>{
         switch(entry.type){
-            case "title":
+            case "Title":
                 return new Title(entry.value)
-            case "heading":
-                return new Heading(entry.hirarchy, entry.value)
-            case "week":
-                return new Week(entry.start, entry.end ,entry.value)
-            case "text":
+            case "Heading":
+                return new Heading(entry.level, entry.value)
+            case "Week":
+                return new Week(entry.startDate, entry.endDate ,entry.value)
+            case "Text":
                 return new Text(entry.value)
             default:
                 console.log(entry)
@@ -19,13 +19,15 @@ function ImportJournal(json){
     })
     return importJournal
 }
-function ExportToWiki(Journal){
+function ExportToWiki(json){
+    const Journal = ImportJournal(json)
     let output=""
     Journal.forEach(element => {
         output+=element.value;
     });
+    console.log(output)
     return output
 }
 
-module.exports = { ImportJournal, ExportToWiki }
+export { ImportJournal, ExportToWiki }
 

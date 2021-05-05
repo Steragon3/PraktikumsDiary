@@ -1,7 +1,7 @@
 import {auth} from '../../firebase'
 import initialDiary from './initialDiary'
 
-const updateDiary = (diary) => async(dispatch,getState, {getFirestore}) => {
+const updateDiary = (diary) => async(dispatch, getState, {getFirestore}) => {
     // return (dispatch, getState, {getFirestore}) => {
       const firestore = getFirestore();
       
