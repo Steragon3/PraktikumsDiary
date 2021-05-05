@@ -2,15 +2,15 @@ import DiaryScreen  from './components/DiaryScreen/DiaryScreen'
 import 'bootstrap/dist/css/bootstrap.min.css'
 import logo from './logo.svg';
 import './App.scss';
-import Signup from './components/Signup'
+import Signup from './components/auth/Signup'
 import { Container } from 'react-bootstrap'
 import { AuthProvider } from './context/AuthContext'
 import { BrowserRouter as Router, Switch, Route} from 'react-router-dom'  
-import Dashboard from './components/Dashboard'
-import Login from './components/Login'
-import PrivateRoute from './components/PrivateRoute'
-import ForgotPassword from './components/ForgotPassword'
-import UpdateProfile from './components/UpdateProfile';
+import Dashboard from './components/auth/Dashboard'
+import Login from './components/auth/Login'
+import PrivateRoute from './components/auth/PrivateRoute'
+import ForgotPassword from './components/auth/ForgotPassword'
+import UpdateProfile from './components/auth/UpdateProfile';
 import CreateCompany from './components/fireStoreProject/CreateProject';
 import WikiExporter from './components/WikiExporter/WikiExporter';
 import Menu from './components/Menu/Menu'
