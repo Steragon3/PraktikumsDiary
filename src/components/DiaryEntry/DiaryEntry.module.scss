@@ -1,3 +1,4 @@
+@import "../../App.scss";
 .Entry {
     background-color: white;
     border-radius: 5px;
@@ -24,9 +25,9 @@
     padding-left: 25px;
     padding-right: 25px;
     left: 20px;
-    color: lightgrey;
+    color: black;
     border-radius: 5px;
-    background-color: lightcyan;
+    background-color: $baby-blue;
     top: -10px;
     display: flex;
     align-items: center;
