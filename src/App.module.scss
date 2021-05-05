@@ -3,6 +3,17 @@
   padding: 0;
 }
 
+.app-container{
+  width: 100vw;
+  display: grid;
+  grid-template-columns: 1fr 4fr;
+  background-color: olive;
+}
+$base-yellow: #F7E83D;
+$baby-blue: #89CFF0;
+$light-yellow: #F7E83D;
+
+
 
 .main-container{
   width: 100vw;
