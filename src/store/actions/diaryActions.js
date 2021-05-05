@@ -34,6 +34,7 @@ const updateDiary = (diary) => async(dispatch, getState, {getFirestore}) => {
             })
         })
         .catch((err) => {
+            console.log(err)
             dispatch({
                 type: 'diary/error',
                 payload: err

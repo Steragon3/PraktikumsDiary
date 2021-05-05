@@ -56,4 +56,6 @@ function FormatText(text){
     return newText;
 }
 
-module.exports = {Title, Heading, Week, Text, FormatDate, FormatText}
+export {Title as Title, Heading as Heading, Week as Week, Text as Text, FormatDate as FormatDate, FormatText as FormatText}
+
+// module.exports = {Title, Heading, Week, Text, FormatDate, FormatText}

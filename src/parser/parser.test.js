@@ -1,5 +1,5 @@
 import { ImportJournal, ExportToWiki } from './parser.js'
-import { FormatDate, FormatText, Heading, Title, Week, Text } from './classes.js'
+import { FormatDate, FormatText, Heading, Title, Week, Text } from './Classes.js'
 const testjson = require('./test.json');
 
 
