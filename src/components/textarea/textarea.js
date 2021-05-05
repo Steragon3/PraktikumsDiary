@@ -35,6 +35,7 @@ const  ResizableTextarea = ({defaultValue, update, className, minRows, maxRows})
         defaultValue={defaultValue}
         className={className}
         onChange={(e)=>{handleChange(e)}}
+        placeholder="Enter Text here"
       />
     );
 

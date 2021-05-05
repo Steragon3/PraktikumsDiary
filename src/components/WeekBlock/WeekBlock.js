@@ -8,7 +8,16 @@ import ResizableTextarea from '../textarea/textarea'
 
 
 const WeekBlock = ({editing, text, index, onchange, entry}) => {
-
+  console.log(entry.startDate)
+  if(entry.startDate==""){
+    entry.startDate="Start"
+  }
+  if(entry.endDate==""){
+    entry.endDate="End"
+  }
+  if(text==""){
+    text = "Enter text"
+  }
   let update = (e, key) => {
     console.log("patzi")
     entry[key] = e.target.value
