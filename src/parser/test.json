@@ -5,18 +5,18 @@
     },
     {
         "type": "heading",
-        "hirarchy":1,
+        "level":1,
         "value": "das ist ein h2"
     },
     {
         "type": "heading",
-        "hirarchy":2,
+        "level":2,
         "value": "das ist ein h3"
     },
     {
         "type": "week",
-        "start":"2019-12-10",
-        "end":"2019-12-14",
+        "startDate":"2019-12-10",
+        "endDate":"2019-12-14",
         "value": "in dieser woche habe ich nichts gemacht"
     },
     {
