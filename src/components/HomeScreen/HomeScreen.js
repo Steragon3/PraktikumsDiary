@@ -10,7 +10,6 @@ const HomeScreen = () => {
     <div className={styles.map}>
       <StreetMap></StreetMap>
     </div>
-    <div className={styles.filter}></div>
   </div>
   </div>
 )};
