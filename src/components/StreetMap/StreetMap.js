@@ -32,7 +32,6 @@ import { scryRenderedComponentsWithType } from 'react-dom/test-utils';
 //   }
 // ]
 const StreetMap = ({companies}) => {
-  console.log(companies)
   const [center, setCenter] = useState({ lat: 47.811195, lng: 13.033229})
   const ZOOM_LEVEL = 13
   const mapRef = useRef()
