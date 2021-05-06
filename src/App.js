@@ -36,7 +36,7 @@ function App() {
                     <Route path="/login" component={Login}/>
                     <Route path="/forgot-password" component={ForgotPassword}/>
                     <Route path="/create" component={CreateCompany}/>
-                    <Route path="/create-intern" component={CreateIntern}/>
+                    <VerifiedRoute path="/create-intern" component={CreateIntern}/>
                   </div>
                 </div>
               </Switch>
