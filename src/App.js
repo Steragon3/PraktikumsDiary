@@ -17,8 +17,6 @@ import Menu from './components/Menu/Menu'
 import styles from './App.module.scss'
 import CreateIntern from './components/CreateIntern/CreateIntern'
 function App() {
-  console.log(styles)
-
   return (
       <div className={styles["main-container"]}>
           <Router>
