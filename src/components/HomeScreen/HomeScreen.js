@@ -6,6 +6,8 @@ import  fetchCompany  from '../../store/actions/companyAction'
 
 import { compose } from 'redux'
 import { connect } from 'react-redux'
+import StreetMap from '../StreetMap/StreetMap';
+
 
 const RemapSalary = (val) => {
   switch(val){
@@ -64,8 +66,14 @@ const HomeScreenPresentation = ({onLoadData}) => {
   
   console.log(companies)
 
-  return (
-    <a href="/diary">Diary  </a>
+  return(
+    <div className={styles.HomeScreen}>
+    <div className={styles.main}>
+      <div className={styles.map}>
+        <StreetMap></StreetMap>
+      </div>
+    </div>
+    </div>
   )
 }
 
