@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react'
 import { connect } from 'react-redux'
 import { Form, Button, Card, Alert } from 'react-bootstrap'
 import 'bootstrap/dist/css/bootstrap.min.css'
-import { Link, useHistory } from 'react-router-dom'
+import { Link, useHistory, Redirect } from 'react-router-dom'
 import  fetchDepartment  from '../../store/actions/departmentAction'
 import  fetchCompany  from '../../store/actions/companyAction'
 import { compose} from 'redux'
@@ -26,6 +26,10 @@ function CreateIntern({internPost ,departments , companies, onLoadData, onCreate
   const [error, setError] = useState('')
   const [country, setCountry] = useState('')
   const [loading, setLoading] = useState(false)
+  const [saved, setSaved] = useState(false)
+  const [redirect, setRedirect] = useState(false)
+
+
   const [zip, setZip] = useState(false)
   const history = useHistory()
   const { currentUser } = useAuth()
@@ -58,7 +62,12 @@ function CreateIntern({internPost ,departments , companies, onLoadData, onCreate
     try{
       setLoading(true)
       
-      onCreateIntern({title,link: summary,salary,satisfaction,department,currentUserID}, {name: company, street, country, zip}, companies);
+      await onCreateIntern({title,link: summary,salary,satisfaction,department,currentUserID}, {name: company, street, country, zip}, companies);
+      setSaved(true)
+      setTimeout(() => {
+        setRedirect(true)
+      }, 1000)
+
       /* history.push('/'); */
     }catch(err){
       setError(err.message)
@@ -82,11 +91,15 @@ function CreateIntern({internPost ,departments , companies, onLoadData, onCreate
   });
   const classes = useStyles();
   
+  if(redirect){
+    return (<Redirect to="/" />)
+  }
   return (
     <>
       <Card className={internStyles.card}>
         <Card.Body>
             <h2 className="text-center mb-4">Create Intern</h2>
+            {saved && <Alert variant="success">Saved, redirecting to Home</Alert>}
             {error && <Alert variant="danger">{error}</Alert>}
             <Form onSubmit={handleSubmit}>
                 <Form.Group id="title">

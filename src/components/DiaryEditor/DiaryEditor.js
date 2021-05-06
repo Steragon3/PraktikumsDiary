@@ -93,6 +93,10 @@ const DiaryEditorPresentation = ({ diary, onLoadData, onupdateDiary }) => {
     updateLevels(items)
   }
 
+  const updateDiary = async () => {
+    await onupdateDiary({ entries: data })
+    alert ('Diary saved')
+  }
 
   return (
     <div className={styles.DiaryEditor}>
@@ -118,7 +122,7 @@ const DiaryEditorPresentation = ({ diary, onLoadData, onupdateDiary }) => {
               </div>
             )}
           </Droppable>
-          <button className="btn btn-primary" onClick={() => { onupdateDiary({ entries: data }) }}>
+          <button className="btn btn-primary" onClick={() => {updateDiary()}}>
             Save
           </button>
           <Link to="/export" className="btn btn-primary">Export</Link>

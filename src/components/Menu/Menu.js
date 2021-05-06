@@ -18,7 +18,7 @@ const Menu = () => {
       display: 'Home'
     },
     {
-      link: '/update-profile',
+      link: '/profile',
       display: 'Profile'
     },
     {
@@ -28,7 +28,7 @@ const Menu = () => {
       link: '/Export',
       display: 'Export'
     },{
-      link: 'rate',
+      link: '/rate',
       display: 'Rate Internship'
     }
   ]
