@@ -41,9 +41,11 @@ const Menu = () => {
   
   return (
     <div className={styles.Menu}>
+        <Link to="/profile">
       <div className={styles.icon}>
-        {currentUser.email[0]}
+          {currentUser.email[0]}
       </div>
+        </Link>
       
         <nav>
           {menu.map((menuelement, index) => {
