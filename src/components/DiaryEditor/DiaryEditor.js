@@ -47,8 +47,7 @@ const DiaryEditorPresentation = ({ diary, onLoadData, onupdateDiary }) => {
     let tempitems = [...items]
     console.log(tempitems)
     items.forEach((element, index) => {
-      if (element.type == 'Text') {
-
+      if(element.type == 'Text'){
         let found = false
         for (var i = index - 1; i >= 0 && !found; i--) {
           if (items[i].type == 'Heading') {
@@ -60,9 +59,7 @@ const DiaryEditorPresentation = ({ diary, onLoadData, onupdateDiary }) => {
         }
         if (!found) tempitems[index].level = 1
       }
-
     })
-
     setItems(tempitems)
     console.log(tempitems)
   }
@@ -132,11 +129,6 @@ const DiaryEditorPresentation = ({ diary, onLoadData, onupdateDiary }) => {
   )
 }
 
-// DiaryEditor.propTypes = {};
-
-// DiaryEditor.defaultProps = {};
-
-
 const mapStateToProps = (state) => {
   return {
     diary: state.diary
@@ -151,7 +143,6 @@ const mapDispatchToProps = (dispatch) => {
     onupdateDiary: async (diary) => { dispatch(updateDiary(diary)) }
   }
 }
-
 
 export default compose(
   connect(mapStateToProps, mapDispatchToProps)

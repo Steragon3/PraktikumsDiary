@@ -24,6 +24,9 @@ const Menu = () => {
     },{
       link: '/Export',
       display: 'Export'
+    },{
+      link: 'create-intern',
+      display: 'Rate Internship'
     }
 
   ]

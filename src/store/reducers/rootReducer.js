@@ -1,10 +1,12 @@
 import diaryReducer from './diaryReducer'
-import companyReducer  from './companyReducer'
+import getDepartmentReducer from './getDepartmentReducer'
+import getCompanyReducer  from '../reducers/companyReducer'
 import { combineReducers } from 'redux'
 
 const rootReducer = combineReducers({
-    company: companyReducer,
-    diary: diaryReducer
+    diary: diaryReducer,
+    departments: getDepartmentReducer,
+    companies: getCompanyReducer
 })
 
 export default rootReducer
