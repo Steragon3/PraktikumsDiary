@@ -31,7 +31,7 @@ const RemapSatisfaction = (val) => {
 }
 
 const HomeScreenPresentation = ({onLoadData}) => {
-  const [companies, setCompanies] = useState('')
+  const [companies, setCompanies] = useState([])
   
   useEffect(() => {
     onLoadData().then(({internships, rawcompanies}) => {
@@ -56,7 +56,7 @@ const HomeScreenPresentation = ({onLoadData}) => {
 
         mapped.salary = RemapSalary(Math.round(mapped.salary/count))
         mapped.satisfaction = RemapSatisfaction(Math.round(mapped.satisfaction/count))
-        company.position = [company.longitude, company.latitude]
+        company.position = [company.latitude, company.longitude]
         
         return {...company, ...mapped}
       })
@@ -70,7 +70,7 @@ const HomeScreenPresentation = ({onLoadData}) => {
     <div className={styles.HomeScreen}>
     <div className={styles.main}>
       <div className={styles.map}>
-        <StreetMap></StreetMap>
+        <StreetMap companies={companies}></StreetMap>
       </div>
     </div>
     </div>
