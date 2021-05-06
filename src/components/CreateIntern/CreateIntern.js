@@ -1,4 +1,4 @@
-import React, { Component, useRef, useState, useEffect } from 'react'
+import React, { useState, useEffect } from 'react'
 import { connect } from 'react-redux'
 import  CreateInternAction  from '../../store/actions/departmentAction'
 import { Form, Button, Card, Alert } from 'react-bootstrap'
@@ -9,45 +9,79 @@ import  fetchCompany  from '../../store/actions/companyAction'
 import { compose} from 'redux'
 import { Autocomplete } from '@material-ui/lab';
 import TextField from '@material-ui/core/TextField';
+import CreateInternPost from '../../store/actions/createInternActiton'
+import { makeStyles } from '@material-ui/core/styles';
+import countries from './countries'
+import internStyles from './CreateIntern.module.scss'
+import {useAuth} from '../../context/AuthContext'
 
 
-function CreateIntern({departments , companies, onLoadData}){
-  console.log(companies)
+function CreateIntern({internPost ,departments , companies, onLoadData, onCreateIntern}){
   const [title, setTitle] = useState('') 
   const [summary, setSummary] = useState('') 
-  const [salary, setSalary] = useState('') 
-  const [satisfaction, setSatisfaction] = useState('') 
-  const [department, setDepartment] = useState('') 
+  const [salary, setSalary] = useState('None') 
+  const [satisfaction, setSatisfaction] = useState('Very disatisfied') 
+  const [department, setDepartment] = useState('Hebamme') 
   const [company, setCompany] = useState('')
   const [street, setSreet] = useState('')
   const [error, setError] = useState('')
+  const [country, setCountry] = useState('')
   const [loading, setLoading] = useState(false)
+  const [zip, setZip] = useState(false)
   const history = useHistory()
- 
+  const { currentUser } = useAuth()
+  const currentUserID = currentUser.uid
   useEffect(() => {onLoadData()}, [])
 
-  console.log(JSON.stringify(companies))
   let finalCompanies = []
 
   companies.forEach((item)=>{
-    console.log(item)
     finalCompanies.push({"title": item.name})
   })
-  console.log(JSON.stringify(finalCompanies))
 
   async function handleSubmit(e){
+    setError("")
     e.preventDefault();
+    if(country == "" && company == ""){
+      setError("Please insert a country and company")
+      return
+    }
+    else if(country == ""){
+      setError("Please insert a country")
+      return
+    }else if(company == ""){
+      setError("Please insert a company")
+      return
+    }
     try{
       setLoading(true)
-      await CreateInternAction();
-      history.push('/');
+      onCreateIntern({title,summary,salary,satisfaction,department,company,street,country,zip,currentUserID});
+      /* history.push('/'); */
     }catch{
       setError('Faild to upload InternForm to firebase')
     }
   }
+  function countryToFlag(isoCode) {
+    return typeof String.fromCodePoint !== 'undefined'
+      ? isoCode
+          .toUpperCase()
+          .replace(/./g, (char) => String.fromCodePoint(char.charCodeAt(0) + 127397))
+      : isoCode;
+  }
+  const useStyles = makeStyles({
+    option: {
+      fontSize: 15,
+      '& > span': {
+        marginRight: 10,
+        fontSize: 18,
+      },
+    },
+  });
+  const classes = useStyles();
+  
   return (
     <>
-      <Card>
+      <Card className={internStyles.card}>
         <Card.Body>
             <h2 className="text-center mb-4">Create Intern</h2>
             {error && <Alert variant="danger">{error}</Alert>}
@@ -88,7 +122,11 @@ function CreateIntern({departments , companies, onLoadData}){
                     </Form.Control>
                 </Form.Group>
                 <Autocomplete
-                  onChange={(e)=>{setCompany(e.target.value)}}
+                  required
+                  onInputChange={(event, newInputValue) => {
+                    setCompany(newInputValue);
+                    console.log(newInputValue)
+                  }}
                   freeSolo
                   id="combo-box-demo"
                   options={finalCompanies}
@@ -99,6 +137,42 @@ function CreateIntern({departments , companies, onLoadData}){
                 <Form.Group id="street">
                     <Form.Label>Company street</Form.Label>
                     <Form.Control type="input" onChange={(e)=>{setSreet(e.target.value)}} required />
+                </Form.Group>
+                <Autocomplete
+                  required
+                  onInputChange={(event, newCountry) => {
+                    setCountry(newCountry);
+                    console.log(newCountry)
+                  }}
+                  id="country-select-demo"
+                  style={{ width: 357, paddingBottom: 10 }}
+                  options={countries}
+                  classes={{
+                    option: classes.option,
+                  }}
+                  autoHighlight
+                  getOptionLabel={(option) => option.label}
+                  renderOption={(option) => (
+                    <React.Fragment>
+                      <span>{countryToFlag(option.code)}</span>
+                      {option.label} ({option.code})
+                    </React.Fragment>
+                  )}
+                  renderInput={(params) => (
+                    <TextField
+                      {...params}
+                      label="Choose a country"
+                      variant="outlined"
+                      inputProps={{
+                        ...params.inputProps,
+                        autoComplete: 'new-password', // disable autocomplete and autofill
+                      }}
+                    />
+                  )}
+                />
+                <Form.Group id="zip">
+                    <Form.Label>Zip-Code</Form.Label>
+                    <Form.Control type="input" onChange={(e)=>{setZip(e.target.value)}} required />
                 </Form.Group>
                 <Button disabled={loading} className="w-100" type="submit">
                     Submit Intern
@@ -112,7 +186,8 @@ function CreateIntern({departments , companies, onLoadData}){
 const mapStateToProps = (state) => {
   return {
     departments: state.departments,
-    companies: state.companies
+    companies: state.companies,
+    intern: state.intern
   }
 }
 
@@ -121,7 +196,8 @@ const mapDispatchToProps = (dispatch) => {
     onLoadData: async () => {
        await dispatch(fetchDepartment())
        await dispatch(fetchCompany())
-    }
+    },
+    onCreateIntern: async (internPost) => {dispatch(CreateInternPost(internPost))}
   }
 }
 
