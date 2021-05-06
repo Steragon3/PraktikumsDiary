@@ -31,7 +31,7 @@ const WeekBlock = ({editing, text, index, onchange, entry}) => {
           <input type="date" defaultValue={entry.startDate} className={weekbBlock.inputDate} onChange={(e) => {update(e, 'startDate')}}></input><span> - </span> 
           <input type="date" defaultValue={entry.endDate} className={weekbBlock.inputDate} onChange={(e) => {update(e, 'endDate')}}></input>  
           <div>
-            <ResizableTextarea defaultValue={text} className={weekbBlock.inputText} update={update} minRows="1" maxRows="1000"/>
+            <ResizableTextarea defaultValue={text} className={weekbBlock.inputText} update={update} minRows="1" maxRows="1000" placeholder="Enter text!"/>
             {/* <input type="text" defaultValue={text} className={weekbBlock.inputText} onChange={(e) => {update(e, 'value')}}></input>   */}
           </div>
         </div>

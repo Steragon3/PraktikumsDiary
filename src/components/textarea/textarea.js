@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 
-const  ResizableTextarea = ({defaultValue, update, className, minRows, maxRows}) => {
+const  ResizableTextarea = ({defaultValue, update, className, minRows, maxRows, placeholder}) => {
   const [rows, setRows] = useState(5)
   
   
@@ -16,16 +16,10 @@ const  ResizableTextarea = ({defaultValue, update, className, minRows, maxRows})
     if (currentRows === previousRows) {
       event.target.rows = currentRows;
     }
-
     if (currentRows >= maxRows) {
       event.target.rows = maxRows;
       event.target.scrollTop = event.target.scrollHeight;
     }
-
-    /* this.setState({
-      value: event.target.value,
-      rows: currentRows < maxRows ? currentRows : maxRows,
-    }); */
     setRows(currentRows < maxRows ? currentRows : maxRows)
     update(event, 'value')
   };
@@ -35,7 +29,7 @@ const  ResizableTextarea = ({defaultValue, update, className, minRows, maxRows})
         defaultValue={defaultValue}
         className={className}
         onChange={(e)=>{handleChange(e)}}
-        placeholder="Enter Text here"
+        placeholder={placeholder}
       />
     );
 
