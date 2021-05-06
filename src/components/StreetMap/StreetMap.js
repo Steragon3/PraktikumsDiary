@@ -46,7 +46,8 @@ const StreetMap = ({companies}) => {
                   <a href={companie.website}>{companie.website}</a>
                   <p><i class="material-icons">public</i>{companie.departments.join(', ')}</p>
                   <p>{companie.salary}</p><p>{companie.satisfaction}</p>
-                  <p>{companie.links.map((e, index)=>{return<a href={e}>{e}</a>})}</p>
+                  {/* <p>{companie.links.map((e, index)=>{return<a href={e}>{e}</a>})}</p> */}
+                  <p>{companie.links.join(', ')+companie.links.join(', ')+companie.links.join(', ')}</p>
                 </Popup>
               </Marker>)
             })}

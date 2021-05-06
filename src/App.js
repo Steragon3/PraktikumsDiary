@@ -31,11 +31,12 @@ function App() {
               <Switch>
                 <VerifiedRoute path="/diary" component={DiaryScreen}/>
                 <VerifiedRoute path="/export" component={WikiExporter}/>
-                    <Route path="/home" component={HomeScreen}/>
-                    <PrivateRoute exact path="/" component={HomeScreen}/>
+                <PrivateRoute exact path="/" component={HomeScreen}/>
+                <PrivateRoute path="/home" component={HomeScreen}/>
                 
                 <div className={styles.centered}>
                   <div className="w-100" style={{maxWidth: "500px"}}>
+                    <PrivateRoute path="/profile" component={Dashboard}/>
                     <PrivateRoute path="/update-profile" component={UpdateProfile}/>
                     <Route path="/sign-up" component={Signup}/>
                     <Route path="/login" component={Login}/>
