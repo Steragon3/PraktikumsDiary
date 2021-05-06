@@ -11,7 +11,7 @@ const DiaryActions = ({addItem}) => {
       <button onClick={() => {addItem({type: 'Heading', level: 3, value: ''})}}>Heading Level 3</button>
       <button onClick={() => {addItem({type: 'Heading', level: 4, value: ''})}}>Heading Level 4</button>
       <button onClick={() => {addItem({type: 'Heading', level: 5, value: ''})}}>Heading Level 5</button>
-      <button onClick={() => {addItem({type: 'Week', level: 1, value: '', startDate: '', endDate:''})}}>Week</button>
+      <button onClick={() => {addItem({type: 'Week', level: 2, value: '', startDate: '', endDate:''})}}>Week</button>
       <button onClick={() => {addItem({type: 'Text', level: 1, value: ''})}}>Text</button>
     </div>
   )
