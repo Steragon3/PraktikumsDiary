@@ -15,7 +15,7 @@ import CreateCompany from './components/fireStoreProject/CreateProject';
 import WikiExporter from './components/WikiExporter/WikiExporter'
 import Menu from './components/Menu/Menu'
 import styles from './App.module.scss'
-
+import CreateIntern from './components/CreateIntern/CreateIntern'
 function App() {
   return (
       <div className={styles["main-container"]}>
@@ -36,6 +36,7 @@ function App() {
                     <Route path="/login" component={Login}/>
                     <Route path="/forgot-password" component={ForgotPassword}/>
                     <Route path="/create" component={CreateCompany}/>
+                    <Route path="/create-intern" component={CreateIntern}/>
                   </div>
                 </div>
               </Switch>

@@ -1,10 +1,10 @@
 const initState = []
   
-const getCompanyReducer = (state = initState, action) => {
+const getDepartmentReducer = (state = initState, action) => {
     switch (action.type) {
-        case 'company/fetch':
+        case 'department/fetch':
             return action.payload;
-        case 'company/error':
+        case 'department/error':
             console.log('department err');
             console.log(action.payload)
             return state
@@ -13,4 +13,4 @@ const getCompanyReducer = (state = initState, action) => {
     }
 };
 
-export default getCompanyReducer;
+export default getDepartmentReducer;
