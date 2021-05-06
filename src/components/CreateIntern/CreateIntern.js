@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from 'react'
 import { connect } from 'react-redux'
-import  CreateInternAction  from '../../store/actions/departmentAction'
 import { Form, Button, Card, Alert } from 'react-bootstrap'
 import 'bootstrap/dist/css/bootstrap.min.css'
 import { Link, useHistory } from 'react-router-dom'
@@ -42,23 +41,27 @@ function CreateIntern({internPost ,departments , companies, onLoadData, onCreate
   async function handleSubmit(e){
     setError("")
     e.preventDefault();
-    if(country == "" && company == ""){
-      setError("Please insert a country and company")
-      return
-    }
-    else if(country == ""){
-      setError("Please insert a country")
-      return
-    }else if(company == ""){
-      setError("Please insert a company")
-      return
+    console.log(companies)
+    if(!companies.find(e => e.name == company)){
+      if(country == "" && company == ""){
+        setError("Please insert a country and company")
+        return
+      }
+      else if(country == ""){
+        setError("Please insert a country")
+        return
+      }else if(company == ""){
+        setError("Please insert a company")
+        return
+      }
     }
     try{
       setLoading(true)
-      onCreateIntern({title,summary,salary,satisfaction,department,company,street,country,zip,currentUserID});
+      
+      onCreateIntern({title,summary,salary,satisfaction,department,currentUserID}, {name: company, street, country, zip}, companies);
       /* history.push('/'); */
-    }catch{
-      setError('Faild to upload InternForm to firebase')
+    }catch(err){
+      setError(err.message)
     }
   }
   function countryToFlag(isoCode) {
@@ -125,7 +128,6 @@ function CreateIntern({internPost ,departments , companies, onLoadData, onCreate
                   required
                   onInputChange={(event, newInputValue) => {
                     setCompany(newInputValue);
-                    console.log(newInputValue)
                   }}
                   freeSolo
                   id="combo-box-demo"
@@ -134,47 +136,51 @@ function CreateIntern({internPost ,departments , companies, onLoadData, onCreate
                   style={{ width: 357 ,paddingBottom: 10}}
                   renderInput={(params) => <TextField {...params} label="Company" variant="outlined" />}
                 />
-                <Form.Group id="street">
-                    <Form.Label>Company street</Form.Label>
-                    <Form.Control type="input" onChange={(e)=>{setSreet(e.target.value)}} required />
-                </Form.Group>
-                <Autocomplete
-                  required
-                  onInputChange={(event, newCountry) => {
-                    setCountry(newCountry);
-                    console.log(newCountry)
-                  }}
-                  id="country-select-demo"
-                  style={{ width: 357, paddingBottom: 10 }}
-                  options={countries}
-                  classes={{
-                    option: classes.option,
-                  }}
-                  autoHighlight
-                  getOptionLabel={(option) => option.label}
-                  renderOption={(option) => (
-                    <React.Fragment>
-                      <span>{countryToFlag(option.code)}</span>
-                      {option.label} ({option.code})
-                    </React.Fragment>
-                  )}
-                  renderInput={(params) => (
-                    <TextField
-                      {...params}
-                      label="Choose a country"
-                      variant="outlined"
-                      inputProps={{
-                        ...params.inputProps,
-                        autoComplete: 'new-password', // disable autocomplete and autofill
+
+                { (!companies.find((e) => e.name == company)) &&
+                  <>
+                    <Form.Group id="street">
+                        <Form.Label>Company street</Form.Label>
+                        <Form.Control type="input" onChange={(e)=>{setSreet(e.target.value)}} required />
+                    </Form.Group>
+                    <Autocomplete
+                      required
+                      onInputChange={(event, newCountry) => {
+                        setCountry(newCountry);
                       }}
+                      id="country-select-demo"
+                      style={{ width: 357, paddingBottom: 10 }}
+                      options={countries}
+                      classes={{
+                        option: classes.option,
+                      }}
+                      autoHighlight
+                      getOptionLabel={(option) => option.label}
+                      renderOption={(option) => (
+                        <React.Fragment>
+                          <span>{countryToFlag(option.code)}</span>
+                          {option.label} ({option.code})
+                        </React.Fragment>
+                      )}
+                      renderInput={(params) => (
+                        <TextField
+                          {...params}
+                          label="Choose a country"
+                          variant="outlined"
+                          inputProps={{
+                            ...params.inputProps,
+                            autoComplete: 'new-password', // disable autocomplete and autofill
+                          }}
+                        />
+                      )}
                     />
-                  )}
-                />
-                <Form.Group id="zip">
-                    <Form.Label>Zip-Code</Form.Label>
-                    <Form.Control type="input" onChange={(e)=>{setZip(e.target.value)}} required />
-                </Form.Group>
-                <Button disabled={loading} className="w-100" type="submit">
+                    <Form.Group id="zip">
+                        <Form.Label>Zip-Code</Form.Label>
+                        <Form.Control type="input" onChange={(e)=>{setZip(e.target.value)}} required />
+                    </Form.Group>
+                  </>
+                }
+                <Button disabled={loading || false} className="w-100" type="submit">
                     Submit Intern
                 </Button>
             </Form>
@@ -197,7 +203,13 @@ const mapDispatchToProps = (dispatch) => {
        await dispatch(fetchDepartment())
        await dispatch(fetchCompany())
     },
-    onCreateIntern: async (internPost) => {dispatch(CreateInternPost(internPost))}
+    onCreateIntern: async (internPost, company, companies) => {
+      try{
+        dispatch(CreateInternPost(internPost, company, companies))
+      }catch(err){
+        throw new Error(err.message)
+      }
+    }
   }
 }
 
