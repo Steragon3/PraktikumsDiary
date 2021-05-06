@@ -3,7 +3,8 @@ const fetchCompany = () => async(dispatch,getState, {getFirestore}) => {
     let action = await firestore.collection("companies").get().then((data) => {
         let companies = []
         data.forEach((doc)=>{
-            companies.push({id: doc.id ,name: doc.data().name})
+            var data = doc.data()
+            companies.push({id: doc.id ,name: data.name, longitude: data.longitude, latitude: data.latitude})
         })
         return ({
             type: 'company/fetch',

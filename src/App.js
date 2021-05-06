@@ -18,6 +18,8 @@ import WikiExporter from './components/WikiExporter/WikiExporter'
 import Menu from './components/Menu/Menu'
 import styles from './App.module.scss'
 import CreateIntern from './components/CreateIntern/CreateIntern'
+
+
 function App() {
   return (
       <div className={styles["main-container"]}>
@@ -31,15 +33,15 @@ function App() {
                 <VerifiedRoute path="/export" component={WikiExporter}/>
                 
                 <div className={styles.centered}>
-                  <div className="w-100" style={{maxWidth: "400px"}}>
-                    <PrivateRoute exact path="/" component={Dashboard}/>
+                  <div className="w-100" style={{maxWidth: "500px"}}>
+                    <PrivateRoute exact path="/" component={HomeScreen}/>
                     <PrivateRoute path="/update-profile" component={UpdateProfile}/>
                     <Route path="/sign-up" component={Signup}/>
                     <Route path="/login" component={Login}/>
                     <Route path="/map" component={StreetMap}/>
                     <Route path="/forgot-password" component={ForgotPassword}/>
-                    <Route path="/create" component={CreateCompany}/>
                     <Route path="/home" component={HomeScreen}/>
+                    <VerifiedRoute path="/rate" component={CreateIntern}/>
                   </div>
                 </div>
               </Switch>
