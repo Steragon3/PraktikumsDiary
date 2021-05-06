@@ -16,6 +16,7 @@ import WikiExporter from './components/WikiExporter/WikiExporter'
 import Menu from './components/Menu/Menu'
 import styles from './App.module.scss'
 import CreateIntern from './components/CreateIntern/CreateIntern'
+import HomeScreen from './components/HomeScreen/HomeScreen';
 function App() {
   return (
       <div className={styles["main-container"]}>
@@ -30,7 +31,7 @@ function App() {
                 
                 <div className={styles.centered}>
                   <div className="w-100" style={{maxWidth: "400px"}}>
-                    <PrivateRoute exact path="/" component={Dashboard}/>
+                    <PrivateRoute exact path="/" component={HomeScreen}/>
                     <PrivateRoute path="/update-profile" component={UpdateProfile}/>
                     <Route path="/sign-up" component={Signup}/>
                     <Route path="/login" component={Login}/>

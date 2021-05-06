@@ -2,7 +2,6 @@ var API_KEY = "c317d1183d8d6261f075c90fbcf8517b"
 var BASE_URL = 'http://api.positionstack.com/v1/'
 var regex = /([\d]-[\d])/g
 
-
 const QueryFetch = (url = BASE_URL, params) => {
     var url = new URL(url)
 
@@ -15,9 +14,8 @@ const QueryFetch = (url = BASE_URL, params) => {
     return fetch(url.href)
 }
 
-
 const createCompany = async (company, firestore) => {
-    
+
     company.street = company.street.replace(regex, m => {
         m = m.replaceAll('-', '/')
         return m
@@ -51,7 +49,6 @@ const cacheCompany = async (companies, company, firestore) => {
     }
 }
 
-
 const CreateInternPost = (internPost, company, companies) => async (dispatch, getState, { getFirestore }) => {
     try {
         const firestore = getFirestore();
@@ -78,8 +75,30 @@ const CreateInternPost = (internPost, company, companies) => async (dispatch, ge
         dispatch({
             type: 'internPost/error',
             payload: err
-        }) 
+        })
     }
 };
 
-export default CreateInternPost
+const fetchInternships = () => async(dispatch, getState, {getFirestore}) => {
+    const firestore = getFirestore();
+
+    let action = await firestore.collection("interns").get().then((data) => {
+        let internships = []
+        data.forEach((doc)=>{
+            internships.push({id: doc.id, ...doc.data()})
+        })
+        return ({
+            type: 'internships/fetch',
+            payload: internships
+        })
+    }).catch((err) => {
+        return {
+            type: 'internships/error',
+            payload: err
+        }
+    })
+    dispatch(action)
+    return (action.payload)
+}
+
+export {CreateInternPost, fetchInternships}

@@ -8,7 +8,7 @@ import  fetchCompany  from '../../store/actions/companyAction'
 import { compose} from 'redux'
 import { Autocomplete } from '@material-ui/lab';
 import TextField from '@material-ui/core/TextField';
-import CreateInternPost from '../../store/actions/createInternActiton'
+import {CreateInternPost} from '../../store/actions/internshipActions'
 import { makeStyles } from '@material-ui/core/styles';
 import countries from './countries'
 import internStyles from './CreateIntern.module.scss'
@@ -58,7 +58,7 @@ function CreateIntern({internPost ,departments , companies, onLoadData, onCreate
     try{
       setLoading(true)
       
-      onCreateIntern({title,summary,salary,satisfaction,department,currentUserID}, {name: company, street, country, zip}, companies);
+      onCreateIntern({title,link: summary,salary,satisfaction,department,currentUserID}, {name: company, street, country, zip}, companies);
       /* history.push('/'); */
     }catch(err){
       setError(err.message)
@@ -94,26 +94,27 @@ function CreateIntern({internPost ,departments , companies, onLoadData, onCreate
                     <Form.Control type="input" onChange={(e)=>{setTitle(e.target.value)}} required />
                 </Form.Group>
                 <Form.Group id="summary">
-                  <Form.Label>Example textarea</Form.Label>
-                  <Form.Control as="textarea" rows={4} onChange={(e)=>{setSummary(e.target.value)}} required/>
+                  <Form.Label>Link to Wikireport</Form.Label>
+                  <Form.Control type="url" placeholder="https://www.google.com" pattern="^https?://.*" onChange={(e)=>{setSummary(e.target.value)}} required />
+                  {/* <Form.Control as="textarea" rows={4} onChange={(e)=>{setSummary(e.target.value)}} required/> */}
                 </Form.Group>
                 <Form.Group id="salary">
                     <Form.Label>Salary</Form.Label>
                     <Form.Control as="select" onChange={(e)=>{setSalary(e.target.value)}} required >
-                      <option>None</option>
-                      <option>Below average</option>
-                      <option>Average</option>
-                      <option>Above average</option>
+                      <option value={0}>None</option>
+                      <option value={0}>Below average</option>
+                      <option value={0}>Average</option>
+                      <option value={0}>Above average</option>
                     </Form.Control>
                 </Form.Group>
                 <Form.Group id="satisfaction">
                     <Form.Label>Satisfaction</Form.Label>
                     <Form.Control as="select" onChange={(e)=>{setSatisfaction(e.target.value)}} required >
-                      <option>Very disatisfied</option>
-                      <option>Disatisfied</option>
-                      <option>Ok</option>
-                      <option>Satisfied</option>
-                      <option>Very satisfied</option>
+                      <option value={0}>Very disatisfied</option>
+                      <option value={1}>Disatisfied</option>
+                      <option value={2}>Ok</option>
+                      <option value={3}>Satisfied</option>
+                      <option value={4}>Very satisfied</option>
                     </Form.Control>
                 </Form.Group>
                 <Form.Group id="departmen">
