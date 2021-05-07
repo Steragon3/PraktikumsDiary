@@ -12,8 +12,6 @@ function ImportJournal(json){
             case "Text":
                 return new Text(entry.value)
             default:
-                console.log(entry)
-                console.log("fehler")
                 break
         }
     })
@@ -25,7 +23,6 @@ function ExportToWiki(json){
     Journal.forEach(element => {
         output+=element.value;
     });
-    console.log(output)
     return output
 }
 

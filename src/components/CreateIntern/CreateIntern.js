@@ -136,8 +136,8 @@ function CreateIntern({internPost ,departments , companies, onLoadData, onCreate
                     <Form.Control as="select" onChange={(e)=>{
                         setDepartment(e.target.value)
                       }} required >
-                      {departments.map((e)=>{
-                        return <option>{e}</option>
+                      {departments.map((e,i)=>{
+                        return <option key={i}>{e}</option>
                       })}
                     </Form.Control>
                 </Form.Group>

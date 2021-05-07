@@ -59,16 +59,11 @@ const Menu = () => {
           <div className={styles.infoDiv}>
             {editing && <InfoIcon/>}
             <i className={styles.icons + " material-icons"} onClick={()=>setEditing(!editing)}>help</i>
-            {console.log(path)}
           </div>    
         }
       
     </div>
   )
 }
-
-Menu.propTypes = {};
-
-Menu.defaultProps = {};
 
 export default Menu;

@@ -49,8 +49,6 @@ const HomeScreenPresentation = ({onLoadData}) => {
 
   useEffect(() => {
     onLoadData().then(({internships, rawcompanies, departments}) => {
-      console.log(rawcompanies)
-
       let a = rawcompanies.map((company) => {
         let filInts = internships.filter((i) => i.company === company.id);
         if (filInts.length === 0){
@@ -98,8 +96,8 @@ const HomeScreenPresentation = ({onLoadData}) => {
             <Form.Control as="select" onChange={(e)=>{
                 reFilter(e.target.value)
               }}>
-              {deps.map((e)=>{
-                return <option>{e}</option>
+              {deps.map((e, i)=>{
+                return <option key={i}>{e}</option>
               })}
             </Form.Control>
         </Form.Group>

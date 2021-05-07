@@ -18,7 +18,6 @@ const DiaryEditorPresentation = ({ diary, onLoadData, onupdateDiary }) => {
       setItems(d.entries)
     })
   }, [])
-  console.log(styles)
 
   // if(data.length == 0) setItems(Array.from(initialData))
 
@@ -53,20 +52,17 @@ const DiaryEditorPresentation = ({ diary, onLoadData, onupdateDiary }) => {
             console.log(items[i].level, parseInt(items[i].level) + 1)
             tempitems[index].level = parseInt(items[i].level) + 1
             found = true
-            console.log(i, index)
           }
         }
         if (!found) tempitems[index].level = 1
       }
     })
     setItems(tempitems)
-    console.log(tempitems)
   }
 
   const swapItems = (aInd, bInd) => {
     if (bInd < 0 || bInd > data.length - 1) {
     } else {
-      console.log(aInd, bInd)
       let items = Array.from(data)
       let temp = items[bInd]
       items[bInd] = items[aInd]

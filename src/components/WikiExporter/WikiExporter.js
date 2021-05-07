@@ -12,14 +12,13 @@ const WikiExporter = ({onLoadData}) => {
     setItems(ExportToWiki(d.entries))
   })}, [])
   useEffect(() => {
-    console.log(textareaElement)
     if (textareaElement) textareaElement.current.select()
   },)
 
   return(
     <div className={styles.WikiExporter}>
         <textarea onChange={(e)=>data = e.target.value} id="wikiText" defaultValue={data} rows="10" cols="100" ref={textareaElement}></textarea>
-        <button className="btn btn-primary" onClick={()=>navigator.clipboard.writeText(data)}><i class="material-icons">content_copy</i> Copy to Clipboard </button>
+        <button className="btn btn-primary" onClick={()=>navigator.clipboard.writeText(data)}><i className="material-icons">content_copy</i> Copy to Clipboard </button>
     </div>
     
 )};
