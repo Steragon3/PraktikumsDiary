@@ -55,7 +55,7 @@ const HomeScreenPresentation = ({onLoadData}) => {
 
   useEffect(() => {
     onLoadData().then(({internships, rawcompanies, departments}) => {
-      
+      console.log(rawcompanies)
 
       let a = rawcompanies.map((company) => {
         let filInts = internships.filter((i) => i.company == company.id);
