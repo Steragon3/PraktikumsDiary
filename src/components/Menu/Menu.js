@@ -18,7 +18,7 @@ const Menu = () => {
       display: 'Home'
     },
     {
-      link: '/update-profile',
+      link: '/profile',
       display: 'Profile'
     },
     {
@@ -28,7 +28,7 @@ const Menu = () => {
       link: '/Export',
       display: 'Export'
     },{
-      link: 'rate',
+      link: '/rate',
       display: 'Rate Internship'
     }
   ]
@@ -41,9 +41,11 @@ const Menu = () => {
   
   return (
     <div className={styles.Menu}>
+        <Link to="/profile">
       <div className={styles.icon}>
-        {currentUser.email[0]}
+          {currentUser.email[0]}
       </div>
+        </Link>
       
         <nav>
           {menu.map((menuelement, index) => {

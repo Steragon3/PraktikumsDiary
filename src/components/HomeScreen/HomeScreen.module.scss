@@ -1,14 +1,30 @@
 .HomeScreen {
-    width: 100vw;
+    width: 100%;
     .main{
-        width: 75vw;
-        height: 100vh;
-        .map{
-        background-color: green;
         width: 100%;
-        height: 100%;
-        clip-path: ellipse(100% 100% at top right);
+        height: 100vh;
+        filter: drop-shadow(-1px 6px 15px rgba(50, 50, 0, 0.2));
+        .map{
+            background-color: green;
+            width: 100%;
+            height: 100%;
+            clip-path: ellipse(100% 100% at top right);
+        }
     }
+    
+    .filter{
+        height: 200px;
+        max-width: 400px;
+        position: relative;
+        bottom: 200px;
+        filter: drop-shadow(1px 6px 15px rgba(50, 50, 0, 0.15));
+        // box-shadow: 5px 5px 5px rgba(0,0,0,0.5);
+        padding: 1rem;
+        padding-left: 2rem;
+        padding-right: 2rem;
+        border-radius: 0px 0.5rem 0px 0px;
+        background-color: white;
+        z-index: 20;
     }
    
     

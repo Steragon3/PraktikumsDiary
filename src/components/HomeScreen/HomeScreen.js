@@ -3,6 +3,10 @@ import PropTypes from 'prop-types';
 import styles from './HomeScreen.module.scss';
 import {fetchInternships} from '../../store/actions/internshipActions'
 import  fetchCompany  from '../../store/actions/companyAction'
+import  fetchDepartment  from '../../store/actions/departmentAction'
+
+import { Form, Button, Card, Alert } from 'react-bootstrap'
+
 
 import { compose } from 'redux'
 import { connect } from 'react-redux'
@@ -30,11 +34,29 @@ const RemapSatisfaction = (val) => {
   }
 }
 
+
+
 const HomeScreenPresentation = ({onLoadData}) => {
   const [companies, setCompanies] = useState([])
+  const [deps, setDepartments] = useState([])
+  const [satisfactionFilter, setSatisfactionFilter] = useState('')
+  const [departmentFilter, setDepartmentFilter] = useState('')
+  const [rawComps, setRawComps] = useState([])
   
+  const handleSubmit = (e) => {
+    e.preventDefault()
+    console.log(e)
+  }
+
+  const reFilter = (value) =>{
+    setCompanies(rawComps.filter((e) => e.departments.includes(value) || value == 'No Filter'))
+  }
+
+
   useEffect(() => {
-    onLoadData().then(({internships, rawcompanies}) => {
+    onLoadData().then(({internships, rawcompanies, departments}) => {
+      
+
       let a = rawcompanies.map((company) => {
         let filInts = internships.filter((i) => i.company == company.id);
         if (filInts.length == 0){
@@ -60,11 +82,14 @@ const HomeScreenPresentation = ({onLoadData}) => {
         
         return {...company, ...mapped}
       })
-      setCompanies(a.filter(e=> e != null))
+
+      setDepartments(['No Filter', ...departments])
+      a = a.filter(e=> e != null)
+      setRawComps(a)
+      setCompanies(a)
     })
   }, [])
   
-  console.log(companies)
 
   return(
     <div className={styles.HomeScreen}>
@@ -72,7 +97,26 @@ const HomeScreenPresentation = ({onLoadData}) => {
       <div className={styles.map}>
         <StreetMap companies={companies}></StreetMap>
       </div>
-    </div>
+      {/* <div className={styles.centered}>
+                  <div className="w-100" style={{maxWidth: "500px"}}> */}
+      <div className={styles.filter}>
+        <h2>Filter</h2>
+        <Form.Group id="department">
+            <Form.Label>Department</Form.Label>
+            <Form.Control as="select" onChange={(e)=>{
+                console.log(e.target.value)
+                setDepartmentFilter(e.target.value)
+                reFilter(e.target.value)
+              }}>
+              {deps.map((e)=>{
+                return <option>{e}</option>
+              })}
+            </Form.Control>
+        </Form.Group>
+        
+
+      </div>
+    </div> 
     </div>
   )
 }
@@ -93,7 +137,8 @@ const mapDispatchToProps = (dispatch) => {
     onLoadData: async () => {
       let internships = await dispatch(fetchInternships())
       let rawcompanies = await dispatch(fetchCompany())
-      return {internships, rawcompanies}
+      let departments = await dispatch(fetchDepartment())
+      return {internships, rawcompanies, departments}
     },
   }
 }

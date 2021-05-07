@@ -8,7 +8,9 @@
         padding-top: 20px;
         padding-bottom: 20px;
 
-        
+        & > a:hover{    
+            text-decoration: none;
+        }
         .icon{
             border-radius: 50%;
             width: 4rem;
@@ -19,7 +21,6 @@
             display:flex;
             justify-content: center;
             align-items: center;
-            
             font-size: 2rem;
             line-height: 2rem;
             margin-bottom: 20px;
@@ -47,6 +48,7 @@
                 
                 &.active{
                     background-color: #e63946; 
+                    padding-left: 2rem;
             
                 }
                 

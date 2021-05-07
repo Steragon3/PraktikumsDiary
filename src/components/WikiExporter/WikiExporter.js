@@ -16,7 +16,7 @@ const WikiExporter = ({onLoadData}) => {
   })}, [])
   useEffect(() => {
     console.log(textareaElement.current)
-      /* textareaElement.current.select() */
+      //  textareaElement.current.select()
   },)
 
   return(
