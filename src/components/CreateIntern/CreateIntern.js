@@ -28,6 +28,7 @@ function CreateIntern({internPost ,departments , companies, onLoadData, onCreate
   const [loading, setLoading] = useState(false)
   const [saved, setSaved] = useState(false)
   const [redirect, setRedirect] = useState(false)
+  const [website, setWebsite] = useState('')
 
 
   const [zip, setZip] = useState(false)
@@ -62,7 +63,7 @@ function CreateIntern({internPost ,departments , companies, onLoadData, onCreate
     try{
       setLoading(true)
       
-      await onCreateIntern({title,link: summary,salary,satisfaction,department,currentUserID}, {name: company, street, country, zip}, companies);
+      await onCreateIntern({title,link: summary,salary,satisfaction,department,currentUserID}, {name: company, website, street, country, zip}, companies);
       setSaved(true)
       setTimeout(() => {
         setRedirect(true)
@@ -155,6 +156,10 @@ function CreateIntern({internPost ,departments , companies, onLoadData, onCreate
 
                 { (!companies.find((e) => e.name == company)) &&
                   <>
+                    <Form.Group id="website">
+                        <Form.Label>Company Website</Form.Label>
+                        <Form.Control type="input" onChange={(e)=>{setWebsite(e.target.value)}} required />
+                    </Form.Group>
                     <Form.Group id="street">
                         <Form.Label>Company street</Form.Label>
                         <Form.Control type="input" onChange={(e)=>{setSreet(e.target.value)}} required />
