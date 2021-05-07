@@ -27,8 +27,8 @@ function App() {
             <Menu></Menu>
             <div className={styles.content}>
               <Switch>
-                <VerifiedRoute path="/diary" component={DiaryScreen}/>
-                <VerifiedRoute path="/export" component={WikiExporter}/>
+                <PrivateRoute path="/diary" component={DiaryScreen}/>
+                <PrivateRoute path="/export" component={WikiExporter}/>
                 <PrivateRoute exact path="/" component={HomeScreen}/>
                 <PrivateRoute path="/home" component={HomeScreen}/>
                 

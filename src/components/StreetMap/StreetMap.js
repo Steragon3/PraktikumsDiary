@@ -4,7 +4,8 @@ import "./index.css"
 import styles from './StreetMap.module.scss';
 import {MapContainer, TileLayer, Popup, Marker } from "react-leaflet"
 import map from "./map-provider"
-import { iconPerson } from './POIIcon.js';
+import { iconPerson, FHLogo } from './POIIcon.js';
+import { scryRenderedComponentsWithType } from 'react-dom/test-utils';
 
 
 const StreetMap = ({companies}) => {
@@ -16,6 +17,7 @@ const StreetMap = ({companies}) => {
     <div className={styles.StreetMap}>
         <MapContainer center={center} zoom={ZOOM_LEVEL} ref={mapRef}>
           <TileLayer url={map.maptiler.url} attribution={map.maptiler.attribution}/>
+          <Marker position={position} icon={FHLogo}><Popup><h2>FH-Salzburg</h2><p>Campus Urstein</p></Popup></Marker>
             {companies.map((companie,index)=>{
               console.log(companie.website) 
               return (<Marker position={companie.position} icon={iconPerson}>
