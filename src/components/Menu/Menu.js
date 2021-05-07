@@ -28,6 +28,9 @@ const Menu = () => {
     },{
       link: '/rate',
       display: 'Rate Internship'
+    },{
+      link: '/impressum',
+      display: 'Impressum'
     }
   ]
   
