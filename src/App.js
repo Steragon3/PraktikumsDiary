@@ -15,6 +15,7 @@ import ForgotPassword from './components/auth/ForgotPassword'
 import UpdateProfile from './components/auth/UpdateProfile';
 import CreateCompany from './components/fireStoreProject/CreateProject';
 import WikiExporter from './components/WikiExporter/WikiExporter'
+import Impressum from './components/Impressum/Impressum'
 import Menu from './components/Menu/Menu'
 import styles from './App.module.scss'
 import CreateIntern from './components/CreateIntern/CreateIntern'
@@ -36,6 +37,7 @@ function App() {
                 
                 <div className={styles.centered}>
                   <div className="w-100" style={{maxWidth: "500px"}}>
+                    <Route path="/impressum" component={Impressum}/>
                     <PrivateRoute path="/profile" component={Dashboard}/>
                     <PrivateRoute path="/update-profile" component={UpdateProfile}/>
                     <Route path="/sign-up" component={Signup}/>

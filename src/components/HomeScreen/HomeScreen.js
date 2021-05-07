@@ -105,7 +105,6 @@ const HomeScreenPresentation = ({onLoadData}) => {
             <Form.Label>Department</Form.Label>
             <Form.Control as="select" onChange={(e)=>{
                 console.log(e.target.value)
-                setDepartmentFilter(e.target.value)
                 reFilter(e.target.value)
               }}>
               {deps.map((e)=>{
