@@ -20,8 +20,8 @@ const StreetMap = ({companies}) => {
           <Marker position={position} icon={FHLogo}><Popup><h2>FH-Salzburg</h2><p>Campus Urstein</p></Popup></Marker>
             {companies.map((companie,index)=>{
               return (<Marker key={index} position={companie.position} icon={iconPerson}>
-               <Popup><h2>{companie.name}</h2>
-                  <p className={styles.p}><span><i className={styles.icons + " material-icons"}>public</i> </span> <a href={companie.website}>{companie.website}</a></p>
+               <Popup className={styles.Popup}><h2>{companie.name}</h2>
+                  <p className={styles.p}><span className={styles.text }><i className={styles.icons + " material-icons"}>public</i><a href={companie.website}>{companie.website}</a></span></p>
                   <p className={styles.p}><span className={styles.text }><i className={styles.icons + " material-icons"}>work</i>  {companie.departments.join(', ')}</span></p>
                   <p className={styles.p}><span className={styles.text }><i className={styles.icons + " material-icons"}>paid</i>  {companie.salary}</span></p>
                   <p className={styles.p}><span className={styles.text }><i className={styles.icons + " material-icons"}>emoji_emotions</i>  {companie.satisfaction}</span></p>
