@@ -22,6 +22,7 @@ const createCompany = async (company, firestore) => {
     })
 
 
+
     let { latitude, longitude } = await QueryFetch(BASE_URL + "forward", { access_key: API_KEY, query: `${company.street}, ${company.zip}, ${company.country}` })
         .then((result) => { return result.json() })
         .then((body) => {
@@ -31,7 +32,7 @@ const createCompany = async (company, firestore) => {
         })
     console.log(latitude, longitude)
 
-    let id = await firestore.collection('companies').add({ name: company.name, latitude, longitude }).then((docRef) => {
+    let id = await firestore.collection('companies').add({ name: company.name, latitude, longitude, website: company.website }).then((docRef) => {
         return docRef.id
     }).catch((error) => {
 
@@ -41,7 +42,7 @@ const createCompany = async (company, firestore) => {
 }
 
 const cacheCompany = async (companies, company, firestore) => {
-    var found = companies.find((e) => e.name == company.name)
+    var found = companies.find((e) => e.name === company.name)
     if (found) {
         return found.id
     } else {

@@ -1,10 +1,8 @@
 import React, {useState} from 'react';
-import PropTypes from 'prop-types';
 import {Link, useLocation} from 'react-router-dom'
 import styles from './Menu.module.scss';
 import { useAuth } from '../../context/AuthContext'
 import InfoIcon  from '../../components/InfoIcon/InfoIcon'
-import { Card, Button, Alert } from 'react-bootstrap'
 
 
 const Menu = () => {
@@ -30,6 +28,9 @@ const Menu = () => {
     },{
       link: '/rate',
       display: 'Rate Internship'
+    },{
+      link: '/impressum',
+      display: 'Impressum'
     }
   ]
   
@@ -50,11 +51,11 @@ const Menu = () => {
         <nav>
           {menu.map((menuelement, index) => {
             return (
-              <Link key={index} to={menuelement.link} className={menuelement.link == path ? styles.active: ""}>{menuelement.display}</Link>
+              <Link key={index} to={menuelement.link} className={menuelement.link === path ? styles.active: ""}>{menuelement.display}</Link>
             )
           })}
         </nav>
-        {path == "/diary" && 
+        {path === "/diary" && 
           <div className={styles.infoDiv}>
             {editing && <InfoIcon/>}
             <i className={styles.icons + " material-icons"} onClick={()=>setEditing(!editing)}>help</i>

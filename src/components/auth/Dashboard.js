@@ -1,15 +1,11 @@
-import React, {useState, useEffect}from 'react'
+import React, {useState }from 'react'
 import { Card, Button, Alert } from 'react-bootstrap'
 import {useAuth} from '../../context/AuthContext'
 import { Link, useHistory } from 'react-router-dom'
 export default function Dashboard() {
     const [error, setError] = useState("")
-    const { currentUser, logout, sendVerificationLink } = useAuth()
+    const { currentUser, logout } = useAuth()
     const history = useHistory()
-
-    // useEffect(() => {
-    //     logout()
-    // }, [])
 
     async function handleLogout(){
         setError('')

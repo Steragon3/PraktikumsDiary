@@ -4,7 +4,8 @@ const fetchCompany = () => async(dispatch,getState, {getFirestore}) => {
         let companies = []
         data.forEach((doc)=>{
             var data = doc.data()
-            companies.push({id: doc.id ,name: data.name, longitude: data.longitude, latitude: data.latitude})
+            companies.push({id: doc.id ,...data})
+            // companies.push({id: doc.id ,name: data.name, longitude: data.longitude, latitude: data.latitude})
         })
         return ({
             type: 'company/fetch',

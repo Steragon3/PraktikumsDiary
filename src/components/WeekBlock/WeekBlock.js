@@ -1,6 +1,4 @@
-import React,{useState, useEffect} from 'react';
-import PropTypes from 'prop-types';
-import draggablestyles from '../DiaryEntry/DiaryEntry.module.scss'
+import React from 'react';
 import weekbBlock from './WeekBlock.module.scss'
 import ResizableTextarea from '../textarea/textarea'
 
@@ -8,13 +6,13 @@ import ResizableTextarea from '../textarea/textarea'
 
 const WeekBlock = ({editing, text, index, onchange, entry}) => {
   console.log(entry.startDate)
-  if(entry.startDate==""){
+  if(entry.startDate===""){
     entry.startDate="Start"
   }
-  if(entry.endDate==""){
+  if(entry.endDate===""){
     entry.endDate="End"
   }
-  if(text==""){
+  if(text===""){
     text = "Enter text"
   }
   let update = (e, key) => {
@@ -32,7 +30,6 @@ const WeekBlock = ({editing, text, index, onchange, entry}) => {
           <input type="date" defaultValue={entry.endDate} className={weekbBlock.inputDate} onChange={(e) => {update(e, 'endDate')}}></input>  
           <div>
             <ResizableTextarea defaultValue={text} className={weekbBlock.inputText} update={update} minRows="1" maxRows="1000" placeholder="Enter text!"/>
-            {/* <input type="text" defaultValue={text} className={weekbBlock.inputText} onChange={(e) => {update(e, 'value')}}></input>   */}
           </div>
         </div>
         )

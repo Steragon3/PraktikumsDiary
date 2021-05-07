@@ -1,12 +1,9 @@
 import React,  { useState, useEffect, useRef } from 'react';
-import PropTypes from 'prop-types';
 import styles from './WikiExporter.module.scss';
-import DiaryActions from '../DiaryActions/DiaryActions'
 import {updateDiary, fetchDiary} from '../../store/actions/diaryActions'
 import { ExportToWiki } from '../../parser/parser.js'
 import { compose } from 'redux'
 import { connect } from 'react-redux'
-import copyIcon from '../../images/content_copy_black_24dp.svg'
 
 const WikiExporter = ({onLoadData}) => {
   let [data, setItems] = useState([])
@@ -26,9 +23,6 @@ const WikiExporter = ({onLoadData}) => {
     </div>
     
 )};
-// WikiExporter.propTypes = {};
-
-// WikiExporter.defaultProps = {};
 
 const mapStateToProps = (state) => {
   return {
