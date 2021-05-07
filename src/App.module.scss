@@ -7,11 +7,8 @@
   width: 100vw;
   display: grid;
   grid-template-columns: 1fr 4fr;
-  background-color: olive;
 }
-$base-yellow: #F7E83D;
-$baby-blue: #89CFF0;
-$light-yellow: #F7E83D;
+
 
 
 
@@ -23,7 +20,7 @@ $light-yellow: #F7E83D;
   grid-template-columns: auto 8fr;
   
   .content {
-    background-color: #e8e8e8; 
+    background-color: #ecf0f1 ; 
     display: flex;
     justify-content: center;
     
