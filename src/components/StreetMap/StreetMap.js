@@ -8,8 +8,8 @@ import { iconPerson, FHLogo } from './POIIcon.js';
 
 
 const StreetMap = ({companies}) => {
-  const center = { lat: 47.811195, lng: 13.033229}
-  const ZOOM_LEVEL = 13
+  const center = { lat: 47.724040, lng: 13.086170}
+  const ZOOM_LEVEL = 12
   const mapRef = useRef()
   const position = [47.724040,13.086170]
 
@@ -17,7 +17,7 @@ const StreetMap = ({companies}) => {
     <div className={styles.StreetMap}>
         <MapContainer center={center} zoom={ZOOM_LEVEL} ref={mapRef}>
           <TileLayer url={map.maptiler.url} attribution={map.maptiler.attribution}/>
-          <Marker position={position} icon={FHLogo}><Popup><h2>FH-Salzburg</h2><p>Campus Urstein</p></Popup></Marker>
+          <Marker position={position} icon={FHLogo}><Popup className={styles.Popup}><h2>FH-Salzburg</h2><p>Campus Urstein</p></Popup></Marker>
             {companies.map((companie,index)=>{
               return (<Marker key={index} position={companie.position} icon={iconPerson}>
                <Popup className={styles.Popup}><h2>{companie.name}</h2>
