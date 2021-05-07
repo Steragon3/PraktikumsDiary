@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react'
 import { connect } from 'react-redux'
 import { Form, Button, Card, Alert } from 'react-bootstrap'
 import 'bootstrap/dist/css/bootstrap.min.css'
-import { Link, useHistory, Redirect } from 'react-router-dom'
+import { Redirect } from 'react-router-dom'
 import  fetchDepartment  from '../../store/actions/departmentAction'
 import  fetchCompany  from '../../store/actions/companyAction'
 import { compose} from 'redux'
@@ -32,7 +32,7 @@ function CreateIntern({internPost ,departments , companies, onLoadData, onCreate
 
 
   const [zip, setZip] = useState(false)
-  const history = useHistory()
+
   const { currentUser } = useAuth()
   const currentUserID = currentUser.uid
   useEffect(() => {onLoadData()}, [])
@@ -47,15 +47,15 @@ function CreateIntern({internPost ,departments , companies, onLoadData, onCreate
     setError("")
     e.preventDefault();
     console.log(companies)
-    if(!companies.find(e => e.name == company)){
-      if(country == "" && company == ""){
+    if(!companies.find(e => e.name === company)){
+      if(country === "" && company === ""){
         setError("Please insert a country and company")
         return
       }
-      else if(country == ""){
+      else if(country === ""){
         setError("Please insert a country")
         return
-      }else if(company == ""){
+      }else if(company === ""){
         setError("Please insert a company")
         return
       }
@@ -154,7 +154,7 @@ function CreateIntern({internPost ,departments , companies, onLoadData, onCreate
                   renderInput={(params) => <TextField {...params} label="Company" variant="outlined" />}
                 />
 
-                { (!companies.find((e) => e.name == company)) &&
+                { (!companies.find((e) => e.name === company)) &&
                   <>
                     <Form.Group id="website">
                         <Form.Label>Company Website</Form.Label>

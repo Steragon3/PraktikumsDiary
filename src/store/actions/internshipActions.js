@@ -42,7 +42,7 @@ const createCompany = async (company, firestore) => {
 }
 
 const cacheCompany = async (companies, company, firestore) => {
-    var found = companies.find((e) => e.name == company.name)
+    var found = companies.find((e) => e.name === company.name)
     if (found) {
         return found.id
     } else {

@@ -1,5 +1,4 @@
-import React,{useState} from 'react';
-import PropTypes from 'prop-types';
+import React from 'react';
 import draggablestyles from '../DiaryEntry/DiaryEntry.module.scss'
 
 
@@ -18,9 +17,5 @@ const HeadingEntry = ({editing, text, index, onchange, entry}) => {
     </>
   )
 }
-
-HeadingEntry.propTypes = {};
-
-HeadingEntry.defaultProps = {};
 
 export default HeadingEntry;

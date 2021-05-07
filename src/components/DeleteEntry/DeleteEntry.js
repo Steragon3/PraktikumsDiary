@@ -1,16 +1,8 @@
 import React from 'react';
-import PropTypes from 'prop-types';
-import styles from './DeleteEntry.module.scss';
 import remove from '../../images/delete_black_24dp.svg'
 
 const DeleteEntry = () => (
-  // <div className={styles.DeleteEntry}>
-    <img src={remove}></img>
-  // </div>
+    <img src={remove} alt="Delte icon"></img>
 );
-
-DeleteEntry.propTypes = {};
-
-DeleteEntry.defaultProps = {};
 
 export default DeleteEntry;

@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from 'react';
-import PropTypes from 'prop-types';
 import styles from './DiaryEditor.module.scss';
 import DiaryEntry from '../DiaryEntry/DiaryEntry'
 import DiaryActions from '../DiaryActions/DiaryActions'
@@ -26,7 +25,7 @@ const DiaryEditorPresentation = ({ diary, onLoadData, onupdateDiary }) => {
   let onDragEnd = (result) => {
     if (!result.destination) return;
 
-    if (result.destination.droppableId == 'bucket') {
+    if (result.destination.droppableId === 'bucket') {
       deleteItem(result.source.index)
     } else {
       let tempitems = Array.from(data)
@@ -47,10 +46,10 @@ const DiaryEditorPresentation = ({ diary, onLoadData, onupdateDiary }) => {
     let tempitems = [...items]
     console.log(tempitems)
     items.forEach((element, index) => {
-      if(element.type == 'Text'){
+      if(element.type === 'Text'){
         let found = false
         for (var i = index - 1; i >= 0 && !found; i--) {
-          if (items[i].type == 'Heading') {
+          if (items[i].type === 'Heading') {
             console.log(items[i].level, parseInt(items[i].level) + 1)
             tempitems[index].level = parseInt(items[i].level) + 1
             found = true
