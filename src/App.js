@@ -1,8 +1,6 @@
 import DiaryScreen  from './components/DiaryScreen/DiaryScreen'
 import 'bootstrap/dist/css/bootstrap.min.css'
-import logo from './logo.svg';
 import Signup from './components/auth/Signup'
-import { Container } from 'react-bootstrap'
 import { AuthProvider } from './context/AuthContext'
 import { BrowserRouter as Router, Switch, Route} from 'react-router-dom'  
 import StreetMap from './components/StreetMap/StreetMap';
@@ -13,7 +11,6 @@ import PrivateRoute from './components/auth/PrivateRoute'
 import VerifiedRoute from './components/auth/VerifiedRoute'
 import ForgotPassword from './components/auth/ForgotPassword'
 import UpdateProfile from './components/auth/UpdateProfile';
-import CreateCompany from './components/fireStoreProject/CreateProject';
 import WikiExporter from './components/WikiExporter/WikiExporter'
 import Menu from './components/Menu/Menu'
 import styles from './App.module.scss'

@@ -1,5 +1,4 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 import styles from './EntryControls.module.scss';
 import down from '../../images/expand_more_black_24dp.svg'
 import up from '../../images/expand_less_black_24dp.svg'

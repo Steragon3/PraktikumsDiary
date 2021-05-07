@@ -1,5 +1,4 @@
 import React, {useState} from 'react'
-import PropTypes from 'prop-types'
 import styles from './DiaryEntry.module.scss'
 import HeadingEntry from '../HeadingEntry/HeadingEntry'
 import TextEntry from '../TextEntry/TextEntry'
@@ -28,7 +27,7 @@ const DiaryEntry = ({entry, index, onchange, swapItems, deleteItem}) => {
   }
 
   let renderLabel = () => {
-    return entry.type == 'Text' ? 'Text' : `${entry.type}`  
+    return entry.type === 'Text' ? 'Text' : `${entry.type}`  
   }
 
   return (<Draggable draggableId={`${entry.id}`} index={index}>

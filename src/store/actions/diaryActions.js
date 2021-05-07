@@ -44,4 +44,4 @@ const fetchDiary = () => async(dispatch,getState, {getFirestore}) => {
         return (action.payload)
 }
 
-export {updateDiary as updateDiary, fetchDiary as fetchDiary}
+export {updateDiary , fetchDiary}
