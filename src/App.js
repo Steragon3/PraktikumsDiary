@@ -41,7 +41,7 @@ function App() {
                     <Route path="/login" component={Login}/>
                     <Route path="/map" component={StreetMap}/>
                     <Route path="/forgot-password" component={ForgotPassword}/>
-                    <VerifiedRoute path="/rate" component={CreateIntern}/>
+                    <PrivateRoute path="/rate" component={CreateIntern}/>
                   </div>
                 </div>
               </Switch>
