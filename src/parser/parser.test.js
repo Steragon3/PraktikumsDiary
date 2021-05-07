@@ -15,17 +15,16 @@ it('test link bold cursive formatting',() =>{
 });
 
 const testjournal = [
-  new Title ('Mein nices Praktikum'),
   new Heading(1,'das ist ein h2'),
   new Heading(2,'das ist ein h3'),
-  new Week('2019-12-10','2019-12-14','in dieser woche habe ich nichts gemacht'),
-  new Text('text text text *bold* _cursive_ *_boldcrusive_* [www.google.de]')
+  new Text('text text text *bold* _cursive_ *_boldcrusive_* [https://www.google.de]'),
+  new Week('2019-12-10','2019-12-14','in dieser woche habe ich nichts gemacht')
 ]
 
-// it('test import json',() =>{
-//     expect(ImportJournal(testjson)).toBe(testjournal);
-// });
+it('test import json',() =>{
+     expect(ImportJournal(testjson)).toMatchObject(testjournal);
+});
 
 it('test export to wiki form',() =>{
-    expect(ExportToWiki(testjournal)).toBe("{{ Mein nices Praktikum }}\n== das ist ein h2 ==\n=== das ist ein h3 ===\n'''10.12. - 14.12.'''\nin dieser woche habe ich nichts gemacht\ntext text text '''bold''' ''cursive'' '''''boldcrusive''''' [www.google.de google]\n");
+    expect(ExportToWiki(testjson)).toBe("== das ist ein h2 ==\n=== das ist ein h3 ===\ntext text text '''bold''' ''cursive'' '''''boldcrusive''''' [https://www.google.de google]\n'''10.12. - 14.12.'''\nin dieser woche habe ich nichts gemacht\n");
 });

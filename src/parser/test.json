@@ -1,26 +1,13 @@
 [
-    {
-        "type": "title",
-        "value": "Mein nices Praktikum"
-    },
-    {
-        "type": "heading",
-        "level":1,
-        "value": "das ist ein h2"
-    },
-    {
-        "type": "heading",
-        "level":2,
-        "value": "das ist ein h3"
-    },
-    {
-        "type": "week",
-        "startDate":"2019-12-10",
-        "endDate":"2019-12-14",
-        "value": "in dieser woche habe ich nichts gemacht"
-    },
-    {
-        "type": "text",
-        "value": "text text text *bold* _cursive_ *_boldcrusive_* [www.google.de]"
-    }
+  { "id": 1, "value": "das ist ein h2", "level": 1, "type": "Heading" },
+  { "value": "das ist ein h3", "id": 3, "level": 2, "type": "Heading" },
+  { "type": "Text", "id": 4, "value": "text text text *bold* _cursive_ *_boldcrusive_* [https://www.google.de]", "level": 2 },
+  {
+    "endDate": "2019-12-14",
+    "value": "in dieser woche habe ich nichts gemacht",
+    "level": 2,
+    "id": 6,
+    "type": "Week",
+    "startDate": "2019-12-10"
+  }
 ]
