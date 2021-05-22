@@ -9,10 +9,10 @@ import { compose } from 'redux'
 import { connect } from 'react-redux'
 import { updateDiary, fetchDiary } from '../../store/actions/diaryActions'
 import { Link } from "react-router-dom"
+import { ExportToWiki } from '../../parser/parser.js'
 
 const DiaryEditorPresentation = ({ diary, onLoadData, onupdateDiary }) => {
   let [data, setItems] = useState([])
-
   useEffect(() => {
     onLoadData().then((d) => {
       setItems(d.entries)
@@ -120,6 +120,7 @@ const DiaryEditorPresentation = ({ diary, onLoadData, onupdateDiary }) => {
           <button className="btn btn-primary" onClick={() => {updateDiary()}}>
             Save
           </button>
+          <button className="btn btn-primary" onClick={()=>navigator.clipboard.writeText(ExportToWiki(data))}><i className="material-icons">content_copy</i> Copy to Clipboard </button>
           <Link to="/export" className="btn btn-primary">Export</Link>
         </div>
       </DragDropContext>
