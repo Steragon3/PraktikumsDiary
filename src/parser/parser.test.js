@@ -1,6 +1,10 @@
 import { ImportJournal, ExportToWiki } from './parser.js'
 import { FormatDate, FormatText, Heading, Title, Week, Text } from './Classes.js'
 const testjson = require('./test.json');
+const testH1 = require('./testh1.json');
+const testH2 = require('./testh2.json');
+const testWeek = require('./testweek.json');
+const testText = require('./testtext.json');
 
 
 it('test date conversion',() =>{
@@ -25,6 +29,15 @@ it('test import json',() =>{
      expect(ImportJournal(testjson)).toMatchObject(testjournal);
 });
 
-it('test export to wiki form',() =>{
-    expect(ExportToWiki(testjson)).toBe("== das ist ein h2 ==\n=== das ist ein h3 ===\ntext text text '''bold''' ''cursive'' '''''boldcrusive''''' [https://www.google.de google]\n'''10.12. - 14.12.'''\nin dieser woche habe ich nichts gemacht\n");
+it('test export week wiki form',() =>{
+    expect(ExportToWiki(testWeek)).toBe("'''10.12. - 14.12.'''\nin dieser woche habe ich nichts gemacht\n");
+});
+it('test export heading level 1 wiki form (h2)',() =>{
+    expect(ExportToWiki(testH1)).toBe("== das ist ein h2 ==\n");
+});
+it('test export heading level 2 wiki form (h3)',() =>{
+    expect(ExportToWiki(testH2)).toBe("=== das ist ein h3 ===\n");
+});
+it('test export text with fat, cursive , both and link to wiki form',() =>{
+    expect(ExportToWiki(testText)).toBe("text text text '''bold''' ''cursive'' '''''boldcrusive''''' [https://www.google.de google]\n");
 });
