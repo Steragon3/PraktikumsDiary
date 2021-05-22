@@ -21,11 +21,11 @@ const StreetMap = ({companies}) => {
             {companies.map((companie,index)=>{
               return (<Marker key={index} position={companie.position} icon={iconPerson}>
                <Popup className={styles.Popup}><h2>{companie.name}</h2>
-                  <p className={styles.p}><span className={styles.text }><i className={styles.icons + " material-icons"}>public</i><a href={companie.website}>{companie.website}</a></span></p>
+                  <p className={styles.p}><span className={styles.text }><i className={styles.icons + " material-icons"}>public</i><a target="_blank" href={companie.website}>{companie.website}</a></span></p>
                   <p className={styles.p}><span className={styles.text }><i className={styles.icons + " material-icons"}>work</i><span>{companie.departments.join(', ')}</span></span></p>
                   <p className={styles.p}><span className={styles.text }><i className={styles.icons + " material-icons"}>paid</i><span>{companie.salary}</span></span></p>
                   <p className={styles.p}><span className={styles.text }><i className={styles.icons + " material-icons"}>emoji_emotions</i><span>{companie.satisfaction}</span></span></p>
-                  <p className={styles.p}><span className={styles.text }><i className={styles.icons + " material-icons"}>description</i> {companie.links.map((e, index)=>{return <a key={index} href={e}>{e}, </a>})}</span></p>
+                  <p className={styles.p}><span className={styles.text }><i className={styles.icons + " material-icons"}>description</i> {companie.links.map((e, index)=>{return <a key={index} target='_blank' href={e}>{e}, </a>})}</span></p>
                 </Popup>
               </Marker>)
             })}
