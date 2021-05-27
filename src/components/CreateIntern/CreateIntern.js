@@ -99,7 +99,7 @@ function CreateIntern({internPost ,departments , companies, onLoadData, onCreate
     <>
       <Card className={internStyles.card}>
         <Card.Body>
-            <h2 className="text-center mb-4">Create Intern</h2>
+            <h2 className="text-center mb-4">Create Internship</h2>
             {saved && <Alert variant="success">Saved, redirecting to Home</Alert>}
             {error && <Alert variant="danger">{error}</Alert>}
             <Form onSubmit={handleSubmit}>
@@ -202,7 +202,7 @@ function CreateIntern({internPost ,departments , companies, onLoadData, onCreate
                   </>
                 }
                 <Button disabled={loading || false} className="w-100" type="submit">
-                    Submit Intern
+                    Submit Internship
                 </Button>
             </Form>
         </Card.Body>
