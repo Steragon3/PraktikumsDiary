@@ -24,15 +24,10 @@ const DiaryEditorPresentation = ({ diary, onLoadData, onupdateDiary }) => {
   let onDragEnd = (result) => {
     if (!result.destination) return;
 
-    if (result.destination.droppableId === 'bucket') {
-      deleteItem(result.source.index)
-    } else {
-      let tempitems = Array.from(data)
-      const [reorderedItem] = tempitems.splice(result.source.index, 1)
-      tempitems.splice(result.destination.index, 0, reorderedItem)
-      // setItems(tempitems)
-      updateLevels(tempitems)
-    }
+    let tempitems = Array.from(data)
+    const [reorderedItem] = tempitems.splice(result.source.index, 1)
+    tempitems.splice(result.destination.index, 0, reorderedItem)
+    updateLevels(tempitems)
   }
 
   const updateItem = (index, item) => {
@@ -43,13 +38,11 @@ const DiaryEditorPresentation = ({ diary, onLoadData, onupdateDiary }) => {
 
   const updateLevels = (items) => {
     let tempitems = [...items]
-    console.log(tempitems)
     items.forEach((element, index) => {
       if(element.type === 'Text'){
         let found = false
         for (var i = index - 1; i >= 0 && !found; i--) {
           if (items[i].type === 'Heading') {
-            console.log(items[i].level, parseInt(items[i].level) + 1)
             tempitems[index].level = parseInt(items[i].level) + 1
             found = true
           }
@@ -109,14 +102,6 @@ const DiaryEditorPresentation = ({ diary, onLoadData, onupdateDiary }) => {
         </Droppable>
         <div className={styles.DiaryControls}>
           <DiaryActions addItem={addItem}></DiaryActions>
-          <Droppable droppableId="bucket">
-            {(provided, snapshot) => (
-              <div ref={provided.innerRef} {...provided.droppableProps} className={deletestyles.DeleteEntry}>
-                <DeleteEntry></DeleteEntry>
-                {provided.placeholder}
-              </div>
-            )}
-          </Droppable>
           <button className="btn btn-primary" onClick={() => {updateDiary()}}>
             Save
           </button>

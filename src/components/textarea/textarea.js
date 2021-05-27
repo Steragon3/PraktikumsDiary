@@ -23,12 +23,14 @@ const  ResizableTextarea = ({defaultValue, update, className, minRows, maxRows, 
     setRows(currentRows < maxRows ? currentRows : maxRows)
     update(event, 'value')
   };
+
     return (
       <textarea
         rows={rows}
         defaultValue={defaultValue}
         className={className}
         onChange={(e)=>{handleChange(e)}}
+        onFocus={(e)=>{handleChange(e)}}
         placeholder={placeholder}
       />
     );

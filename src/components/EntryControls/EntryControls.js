@@ -4,8 +4,8 @@ import down from '../../images/expand_more_black_24dp.svg'
 import up from '../../images/expand_less_black_24dp.svg'
 import ControlButton from '../ControlButton/ControlButton'
 
-const EntryControls = ({index, swapItems}) => (
-  <div className={styles.EntryControls}>
+const EntryControls = ({index, swapItems, controls}) => (
+  <div className={styles.EntryControls} {...controls} >  
     <ControlButton img={up} onclick={() => {swapItems(index, index-1)}}></ControlButton>
     <ControlButton img={down} onclick={() => {swapItems(index, index+1)}}></ControlButton>
   </div>

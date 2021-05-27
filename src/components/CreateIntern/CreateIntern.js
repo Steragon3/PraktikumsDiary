@@ -150,7 +150,7 @@ function CreateIntern({internPost ,departments , companies, onLoadData, onCreate
                   id="combo-box-demo"
                   options={finalCompanies}
                   getOptionLabel={(option) => option.title}
-                  style={{ width: 357 ,paddingBottom: 10}}
+                  style={{ paddingBottom: 10}}
                   renderInput={(params) => <TextField {...params} label="Company" variant="outlined" />}
                 />
 
@@ -170,7 +170,7 @@ function CreateIntern({internPost ,departments , companies, onLoadData, onCreate
                         setCountry(newCountry);
                       }}
                       id="country-select-demo"
-                      style={{ width: 357, paddingBottom: 10 }}
+                      style={{paddingBottom: 10 }}
                       options={countries}
                       classes={{
                         option: classes.option,

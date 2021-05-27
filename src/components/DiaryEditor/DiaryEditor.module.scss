@@ -28,7 +28,7 @@
     overflow-y: auto;
     padding-top: 3rem;
     padding-bottom: 2rem;
-    max-height: 75vh;
+    max-height: 85vh;
     padding-left: 1rem;
     padding-right: 1rem;
     display: flex;
@@ -36,13 +36,17 @@
 }
 
 .DiaryControls{
-    max-height: 25vh;
     padding-left: 3rem;
     padding-right: 3rem;
     padding-bottom: 1rem;
+    margin-bottom: 20px;
  
     & > button {
         margin-right: 10px;
+
+        i{
+            font-size: 1rem;
+        }
     }
     
 }

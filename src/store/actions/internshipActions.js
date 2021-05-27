@@ -1,5 +1,5 @@
 var API_KEY = "c317d1183d8d6261f075c90fbcf8517b"
-var BASE_URL = 'http://api.positionstack.com/v1/'
+var BASE_URL = 'https://api.positionstack.com/v1/'
 var regex = /([\d]-[\d])/g
 
 const QueryFetch = (url = BASE_URL, params) => {

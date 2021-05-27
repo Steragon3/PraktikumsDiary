@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useRef, useState} from 'react';
 import weekbBlock from './WeekBlock.module.scss'
 import ResizableTextarea from '../textarea/textarea'
 
@@ -8,6 +8,7 @@ const WeekBlock = ({editing, text, index, onchange, entry}) => {
   if(entry.startDate===""){
     entry.startDate="Start"
   }
+  
   if(entry.endDate===""){
     entry.endDate="End"
   }
@@ -16,16 +17,35 @@ const WeekBlock = ({editing, text, index, onchange, entry}) => {
   }
   let update = (e, key) => {
     entry[key] = e.target.value
-    onchange(index, entry)
-}
 
+    if(key == 'startDate'){
+      entry.endDate = getNextFriday(new Date(entry[key]))
+    }
+
+    onchange(index, entry)
+  }
+
+  var pad = (num, size) => {
+    num = num.toString();
+    while (num.length < size) num = "0" + num;
+    return num;
+  }
+  var getNextFriday = (d) => {
+    var end = d
+    var i = 0  
+    while(end.getUTCDay() != 5 && i < 7){
+        end.setDate(end.getDate()+1)
+        i++
+    }
+    return end.getFullYear() + '-' + pad(end.getMonth()+1, 2) + '-' +pad(end.getDate(),2) 
+  }
   return (
     <>
     {editing 
       ? (
         <div className={weekbBlock.pTag}>
           <input type="date" defaultValue={entry.startDate} className={weekbBlock.inputDate} onChange={(e) => {update(e, 'startDate')}}></input><span> - </span> 
-          <input type="date" defaultValue={entry.endDate} className={weekbBlock.inputDate} onChange={(e) => {update(e, 'endDate')}}></input>  
+          <input type="date" value={entry.endDate} className={weekbBlock.inputDate} onChange={(e) => {update(e, 'endDate')}}></input>  
           <div>
             <ResizableTextarea defaultValue={text} className={weekbBlock.inputText} update={update} minRows="1" maxRows="1000" placeholder="Enter text!"/>
           </div>
