@@ -23,7 +23,7 @@ const Menu = () => {
       link: '/diary',
       display: 'Diary'
     },{
-      link: '/Export',
+      link: '/export',
       display: 'Export'
     },{
       link: '/rate',
