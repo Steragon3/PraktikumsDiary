@@ -43,6 +43,8 @@ const createCompany = async (company, firestore) => {
 
 const cacheCompany = async (companies, company, firestore) => {
     var found = companies.find((e) => e.name === company.name)
+    var test = await fetch('/.netlify/functions/place')
+    console.log(test)
     if (found) {
         return found.id
     } else {
